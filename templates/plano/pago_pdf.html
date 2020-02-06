@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+{%block content%}
+{% csrf_token %}
+
+
+<form method="post" type="w">
+    <HR WIDTH=550>
+    <div>
+    <h1>RED SOLUCIONES INFORMATICAS</h1>
+        <p>Dirección: Dr. Antonio del Pino n° 616</p>
+        <p>Tel.: 3837-420540</p>
+        <p>Email: sdcordoba@yahoo.com</p>
+        <p>Documento no valido como factura</p>
+    </div>
+
+    <HR WIDTH=550>
+    <h1>DATOS DEL EQUIPO</h1>
+    <h2> Fecha de Solicitud: {{tecnicos.fecha}}</h2>
+    <h2>Orden de reparación N° {{tecnicos.id}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Cliente: {{tecnicos.cliente}}</h2>
+
+    <h2>Producto: {{tecnicos.producto}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Marca: {{tecnicos.marca}}</h2>
+
+    <h2>Modelo: {{tecnicos.modelo}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Color: {{tecnicos.color}}</h2>
+
+    <h2>S/N: {{tecnicos.serie}}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {%if tecnicos.extra == None%}
+        Accesorios incluidos: Sin accesorios</h2>
+        {% else %}
+        Accesorios incluidos: {{tecnicos.extra}}</h2>
+        {% endif%}
+    <h2>Estado: {{tecnicos.estado}}</h2>
+    <HR WIDTH=550>
+    <h1>SERVICIO TECNICO</h1>
+    <h2>Fecha de entrega: {{tecnicos.fechaen}}</h2>
+    <h2>Diagnostico: {{tecnicos.diagnostico}}</h2>
+    <h2>Proceso Relizado: {{tecnicos.realizar}}</h2>
+    <h2>Observaciones: {{tecnicos.observacion}}</h2>
+    <br>
+    <h1 align="right">TOTAL A PAGAR: {{tecnicos.precio}}</h1>
+
+</form>
+
+
+
+
+
+
+{%endblock%}
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+{% block title%} Busqueda de Registros {% endblock %}
+{%block header%}
+{%endblock%}
+{% block content %}
+<br>
+<br>
+<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'plano_buscar'%}">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-warning">
+            <td scope="col">#</td>
+            <td scope="col">Fecha Solicitud</td>
+            <td scope="col">Usuario</td>
+            <td scope="col">Total a Pagar</td>
+            <td scope="col">Fecha de pago</td>
+            <td scope="col">Deuda</td>
+            <td scope="col">Estado</td>
+            <td scope="col">Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if planos%}
+            {%for plano in planos%}
+                {% if plano.deuda == 0 %}
+        <tr class="table-success">
+                {% elif plano.deuda > 0 %}
+            <tr class="table-primary">
+                {% else %}
+                <tr class="table-danger">
+                    {% endif %}
+                    <td>{{plano.id}}</td>
+                    <td>{{plano.fecha}}</td>
+                    <td>{{plano.usuario}}</td>
+                    <td>{{plano.total}}</td>
+                    <td>{{plano.fecha_pago}}</td>
+                    <td>{{plano.deuda}}</td>
+                    {% if plano.deuda == 0 %}
+                    <td>Deuda Saldada</td>
+                    {% else %}
+                    <td>Con Deuda</td>
+                    {% endif %}
+                    <td>
+                        <nav class="dropdownmenu">
+                            <li><a>Seleccionar</a>
+                                <ul id="submenu">
+                                    <li><a href="{%url 'plano_editar' plano.id%}">Editar datos</a></li>
+                                    {% if plano.deuda == 0 %}
+                                    <li><a href="" class="boton1">Comprobante de pago</a></li>
+                                    {% elif plano.deuda > 0 %}
+                                    <li><a href="{%url 'pago_pdf' plano.id%}">Comprobante de pago</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </nav>
+                    </td>
+                </tr>
+                {%endfor%} {% else %}
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Ups! </strong>tú busqueda no dio resultados, <a href="{%url 'plano_listar'%}" class="alert-link">intentalo de nuevo</a>.
+                </div>
+                {%endif%}
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if planos.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ planos.previous_page_number }}">Previous</a></li>
+        {% endif%} {% if planos.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ planos.next_page_number }}">Next</a></li>
+        {% endif%}
+    </ul>
+</nav>
+
+{% endblock%}
+
+{% block js%}
+<script>
+    $(document).ready(function() {
+        $('.boton1').click(function() {
+            window.alert('El usuario ya saldo su deuda \nNo podras emitir un comprobante de pago!');
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#botonBus').click(function() {
+            var buscar = $('#busca').val();
+            if (buscar==""){
+                window.alert('Ingresa un DNI para realizar una busqueda');
+            }
+        });
+    });
+</script>
+
+
+{%endblock%}
