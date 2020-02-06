@@ -6,17 +6,17 @@
 
 {%block content%}
 <br>
-<h5>Informe Técnico</h5>
+<h5>Registro de Solicitudes</h5>
 <br>
 
 <div style="max-width: 30rem;">
 <form method="post">
 	{%csrf_token%}
 	{{form.as_p}}
-	<button type="submit">Guardar</button><br>
+	<button class="btn btn-success" type="submit">Guardar</button><br>
 </form>
-		
+
 </div>
 <br>
-<a class="btn btn-light" href="{%url 'tecnico_listar'%}">Salir</a>
-{%endblock%}
+<a class="btn btn-primary" href="{%url 'plano_listar'%}">Salir</a>
+{% endblock%}
