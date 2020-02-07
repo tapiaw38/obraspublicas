@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f5250e7-68d5-4194-8585-a7c65b6bca6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obraspublicas/utileria.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/obraspublicas/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/obraspublicas/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plano/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/plano/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plano/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/plano/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plano/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/plano/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plano/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/plano/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/plano/buscar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/buscar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/plano/infor_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/pago_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/plano/pago_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/pago_form.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/plano/pago_pdf.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/pago_pdf.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/plano/recibo_pdf.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/plano/tecnico_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/plano_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/plano/tecnico_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/plano_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/plano/plano_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/plano/plano_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,19 @@
       <option name="presentableId" value="Default" />
       <updated>1580760720426</updated>
     </task>
+    <task id="LOCAL-00001" summary="modificacion-1">
+      <created>1581012479461</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581012479461</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="modificacion-1" />
+    <option name="LAST_COMMIT_MESSAGE" value="modificacion-1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="275" y="58" width="800" height="673" key="#Notifications" timestamp="1581014994352">
@@ -120,6 +131,10 @@
       <screen x="0" y="26" width="1360" height="742" />
     </state>
     <state x="138" y="55" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.26.1360.742@0.26.1360.742" timestamp="1580774222967" />
+    <state x="346" y="26" width="658" height="738" key="CommitChangelistDialog2" timestamp="1581012479049">
+      <screen x="0" y="26" width="1360" height="742" />
+    </state>
+    <state x="346" y="26" width="658" height="738" key="CommitChangelistDialog2/0.26.1360.742@0.26.1360.742" timestamp="1581012479049" />
     <state x="463" y="155" width="424" height="480" key="FileChooserDialogImpl" timestamp="1581014520994">
       <screen x="0" y="26" width="1360" height="742" />
     </state>

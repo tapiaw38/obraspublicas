@@ -6,7 +6,7 @@ class PlanoForm(forms.ModelForm):
     class Meta:
         model = Plano
 
-        fiels = [
+        fields = [
             'fecha',
             'usuario',
             'dir_obra',
@@ -24,10 +24,10 @@ class PlanoForm(forms.ModelForm):
 
         widgets = {
             'fecha': forms.SelectDateWidget(),
-            'usuario': forms.ModelChoiceField(attrs={'class':'form-control'}),
+            'usuario': forms.Select(attrs={'class':'form-control'}),
             'dir_obra': forms.TextInput(attrs={'class':'form-control'}),
-            'precio_metro': forms.IntegerField(attrs={'class':'form-control'}),
-            'metros':forms.IntegerField(attrs={'class':'form-control'}),
+            'precio_metro': forms.TextInput(attrs={'class':'form-control'}),
+            'metros':forms.TextInput(attrs={'class':'form-control'}),
         }
 
 class DeudaForm(forms.ModelForm):
@@ -49,8 +49,8 @@ class DeudaForm(forms.ModelForm):
         }
 
         widgets = {
-            'total' : forms.IntegerField(attrs={'class':'form-control'}),
-            'pago' : forms.IntegerField(attrs={'class':'form-control'}),
-            'fecha_pago' : forms.DateField(attrs={'class':'form-control'}),
-            'deuda' : forms.IntegerField(attrs={'class':'form-control'}),
+            'total' : forms.TextInput(attrs={'class':'form-control'}),
+            'pago' : forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_pago' : forms.SelectDateWidget(),
+            'deuda' : forms.TextInput(attrs={'class':'form-control'}),
         }

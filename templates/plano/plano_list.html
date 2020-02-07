@@ -7,7 +7,7 @@
 {% block content %}
 <br>
 <br>
-<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'tecnico_buscar'%}" >
+<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'plano_buscar'%}" >
  {% csrf_token %}
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
     <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
@@ -53,6 +53,7 @@
                                 <ul id="submenu">
                                     <li><a href="{%url 'plano_editar' plano.id%}">Editar datos</a></li>
                                     <li><a href="{%url 'plano_editar' plano.id%}">Datos Plano</a></li>
+                                    <li><a href="{%url 'pago_nuevo' plano.id%}">Realizar pago</a></li>
                                     {% if plano.deuda == 0 %}
                                     <li><a href="" class="boton1">Comprobante de pago</a></li>
                                     {% elif plano.deuda > 0 %}
