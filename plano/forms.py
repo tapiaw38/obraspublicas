@@ -12,6 +12,7 @@ class PlanoForm(forms.ModelForm):
             'dir_obra',
             'precio_metro',
             'metros',
+            'cuota',
         ]
 
         labels = {
@@ -20,6 +21,7 @@ class PlanoForm(forms.ModelForm):
             'dir_obra': 'Dirección de la obra',
             'precio_metro': 'Precio por metro cuadrado',
             'metros': 'Metros totales del plano',
+            'cuota': 'Pago en cuotas',
         }
 
         widgets = {
@@ -28,6 +30,7 @@ class PlanoForm(forms.ModelForm):
             'dir_obra': forms.TextInput(attrs={'class':'form-control'}),
             'precio_metro': forms.TextInput(attrs={'class':'form-control'}),
             'metros':forms.TextInput(attrs={'class':'form-control'}),
+            'cuota':forms.NullBooleanSelect(),
         }
 
 class DeudaForm(forms.ModelForm):
@@ -83,6 +86,6 @@ class DeudaForm3(forms.ModelForm):
         }
 
         widgets = {
-            'pago' : forms.TextInput(attrs={'class':'form-control'}),
-            'fecha_pago' : forms.SelectDateWidget(),
+            'pago3' : forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_pago3' : forms.SelectDateWidget(),
         }

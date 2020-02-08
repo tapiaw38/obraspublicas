@@ -9,6 +9,7 @@ class Plano(models.Model):
     precio_metro = models.IntegerField()
     metros = models.IntegerField()
     total = models.IntegerField(editable=False)
+    cuota = models.BooleanField(default=False)
     pago = models.IntegerField(default=0)
     pago2 = models.IntegerField(default=0)
     fecha_pago2 = models.DateField(null=True, blank= True)
