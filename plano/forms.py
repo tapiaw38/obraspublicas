@@ -35,22 +35,54 @@ class DeudaForm(forms.ModelForm):
         model = Plano
 
         fields = [
-            'total',
             'pago',
             'fecha_pago',
-            'deuda',
         ]
 
         labels = {
-            'total':'Total a pagar',
             'pago':'Total abonado',
             'fecha_pago':'Fecha de pago',
-            'deuda': 'Deuda',
         }
 
         widgets = {
-            'total' : forms.TextInput(attrs={'class':'form-control'}),
             'pago' : forms.TextInput(attrs={'class':'form-control'}),
             'fecha_pago' : forms.SelectDateWidget(),
-            'deuda' : forms.TextInput(attrs={'class':'form-control'}),
+        }
+
+class DeudaForm2(forms.ModelForm):
+    class Meta:
+        model = Plano
+
+        fields = [
+            'pago2',
+            'fecha_pago2',
+        ]
+
+        labels = {
+            'pago2':'Total abonado',
+            'fecha_pago2':'Fecha de pago cuota 2',
+        }
+
+        widgets = {
+            'pago2' : forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_pago2' : forms.SelectDateWidget(),
+        }
+
+class DeudaForm3(forms.ModelForm):
+    class Meta:
+        model = Plano
+
+        fields = [
+            'pago3',
+            'fecha_pago3',
+        ]
+
+        labels = {
+            'pago3':'Total abonado',
+            'fecha_pago3':'Fecha de pago cuota 3',
+        }
+
+        widgets = {
+            'pago' : forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_pago' : forms.SelectDateWidget(),
         }
