@@ -4,16 +4,16 @@
 
 {% block content %}
 <div class="jumbotron">
-  <p class="lead text-center">Bienvenido a la App Obras Publicas Tinogasta.</p>
+  <p class="lead text-center">Obras Publicas Municipalidad de Tinogasta.</p>
   <hr class="my-4">
   <p class="text-center">Prueba las diversas funcionalidades para registrar, listar usuarios y servicios.</p>
     <p class="text-center">Además podrás generar comprobantes y recibos de pagos en formato PDF.</p>
 </div>
   <p class="lead text-center">
-      <a class="btn btn-primary btn-lg d-inline-block m-1" href="{%url 'usuario_nuevo'%}" role="button">Agregar usuario</a>
-      <a class="btn btn-primary btn-lg d-inline-block m-1" href="{%url 'usuario_listar'%}" role="button">Usuarios registrados</a>
-      <a class="btn btn-primary btn-lg d-inline-block m-1" href="" role="button">Servicio técnico</a>
-      <a class="btn btn-primary btn-lg d-inline-block m-1" href="" role="button">Registros de servicios</a>
+      <a class="btn btn-success btn-lg d-inline-block m-1" href="{%url 'usuario_listar'%}" role="button">USUARIOS</a>
+      <a class="btn btn-success btn-lg d-inline-block m-1" href="{%url 'plano_listar'%}" role="button">PLANOS</a>
+      <a class="btn btn-success btn-lg d-inline-block m-1" href="" role="button">CONEXIONES</a>
+      <a class="btn btn-success btn-lg d-inline-block m-1" href="" role="button">CEMENTERIO</a>
   </p>
 
 
@@ -23,9 +23,9 @@
 {%block footer%}
 
 <footer class="blog-footer">
-  <p class="text-center">Servicio de software a medida <a href="#">PYcode</a> by <a href="#">tapia</a>.</p>
+  <p class="text-center">Servicio de software a medida.</p>
   <p class="text-center">
-    <a>Copyright PYcode © 2019. All rights reserved.</a>
+    <a>Copyright CHIPMUNK © 2019. All rights reserved.</a>
   </p>
 </footer>
 {%endblock%}

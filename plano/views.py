@@ -67,3 +67,17 @@ class pago(View):
         plano=Plano.objects.get(id=id_plano)
         pdf=render_pdf("plano/pago_pdf.html",{'planos':plano})
         return HttpResponse(pdf, content_type='application/pdf')
+
+class pago2(View):
+    #regresa PDF basada en templae html
+    def get(self,request,id_plano):
+        plano=Plano.objects.get(id=id_plano)
+        pdf=render_pdf("plano/pago2_pdf.html",{'planos':plano})
+        return HttpResponse(pdf, content_type='application/pdf')
+
+class pago3(View):
+    #regresa PDF basada en templae html
+    def get(self,request,id_plano):
+        plano=Plano.objects.get(id=id_plano)
+        pdf=render_pdf("plano/pago3_pdf.html",{'planos':plano})
+        return HttpResponse(pdf, content_type='application/pdf')

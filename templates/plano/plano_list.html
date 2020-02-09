@@ -6,6 +6,16 @@
 
 {% block content %}
 <br>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags%}
+<div class="alert alert-dismissible alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Ups! </strong>, <a href="{%url 'plano_listar'%}" class="alert-link">{{message}}intentalo de nuevo</a>.
+</div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 <br>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'plano_buscar'%}" >
  {% csrf_token %}
@@ -19,6 +29,7 @@
         <td scope="col">#</td>
         <td scope="col">Fecha Solicitud</td>
         <td scope="col">Usuario</td>
+        <td scope="col">DNI</td>
         <td scope="col">Total a Pagar</td>
         <td scope="col">Tipo de Pago</td>
         <td scope="col">Deuda</td>
@@ -31,21 +42,22 @@
             {%for plano in object_list%}
                 {% if plano.deuda == 0 %}
         <tr class="table-success">
-                {% elif plano.deuda > 0 %}
+                {% elif plano.deuda %}
             <tr class="table-primary">
                 {% else %}
                 <tr class="table-danger">
                     {% endif %}
                     <td>{{plano.id}}</td>
                     <td>{{plano.fecha}}</td>
-                    <td>{{plano.usuario}}</td>
-                    <td>{{plano.total}}</td>
+                    <td>{{plano.usuario.nombre}}</td>
+                    <td>{{plano.usuario.dni}}</td>
+                    <td>${{plano.total}}</td>
                     {% if plano.cuota == False %}
-                    <td>Pago unico</td>
+                    <td>1 pago de {{plano.total}}</td>
                     {% else %}
-                    <td>Pago en cuotas</td>
+                    <td>3 cuotas de ${{plano.valor_cuota}}</td>
                     {% endif %}
-                    <td>{{plano.deuda}}</td>
+                    <td>${{plano.deuda}}</td>
                     {% if plano.deuda == 0 %}
                     <td>Deuda Saldada</td>
                     {% else %}
@@ -59,22 +71,30 @@
                                     <li><a href="{%url 'plano_editar' plano.id%}">Plano</a></li>
                                     {% if plano.cuota == False %}
                                     <li><a href="{%url 'pago_nuevo' plano.id%}">pago unico</a></li>
-                                    {% elif plano.cuota == True %}
+                                    {% else %}
                                     <li><a href="{%url 'pago_nuevo' plano.id%}">cuota 1</a></li>
                                     {% endif %}
+
                                     {% if plano.deuda < plano.total or plano.deuda == 0 %}
-                                    <li><a href="{%url 'pago_pdf' plano.id%}">Comprobante</a></li>
+                                    <li><a href="{%url 'pago_pdf' plano.id %}">Comprobante</a></li>
                                     {% endif %}
+
                                     {% if plano.cuota == True %}
                                     <li><a href="{%url 'pago_cuota_2' plano.id%}">cuota 2</a></li>
+                                    {% endif %}
+
                                     {% if plano.pago2 > 0 %}
-                                    <li><a href="">Comprobante</a></li>
+                                    <li><a href="{%url 'pago2_pdf' plano.id %}">Comprobante</a></li>
                                     {% endif %}
+
+                                    {% if plano.cuota == True %}
                                     <li><a href="{%url 'pago_cuota_3' plano.id%}">cuota 3</a></li>
-                                    {% if plano.pago3 > 0 %}
-                                    <li><a href="">Comprobante</a></li>
                                     {% endif %}
-                                    {% endif%}
+
+                                    {% if plano.pago3 > 0 %}
+                                    <li><a href="{%url 'pago3_pdf' plano.id %}">Comprobante</a></li>
+                                    {% endif %}
+
                                 </ul>
                             </li>
                         </nav>

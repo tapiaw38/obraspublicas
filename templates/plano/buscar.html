@@ -17,29 +17,35 @@
             <td scope="col">#</td>
             <td scope="col">Fecha Solicitud</td>
             <td scope="col">Usuario</td>
+            <td scope="col">DNI</td>
             <td scope="col">Total a Pagar</td>
-            <td scope="col">Fecha de pago</td>
+            <td scope="col">Tipo de Pago</td>
             <td scope="col">Deuda</td>
             <td scope="col">Estado</td>
             <td scope="col">Acciones</td>
         </tr>
     </thead>
     <tbody>
-        {% if planos%}
+         {% if planos %}
             {%for plano in planos%}
                 {% if plano.deuda == 0 %}
         <tr class="table-success">
-                {% elif plano.deuda > 0 %}
+                {% elif plano.deuda %}
             <tr class="table-primary">
                 {% else %}
                 <tr class="table-danger">
                     {% endif %}
                     <td>{{plano.id}}</td>
                     <td>{{plano.fecha}}</td>
-                    <td>{{plano.usuario}}</td>
-                    <td>{{plano.total}}</td>
-                    <td>{{plano.fecha_pago}}</td>
-                    <td>{{plano.deuda}}</td>
+                    <td>{{plano.usuario.nombre}}</td>
+                    <td>{{plano.usuario.dni}}</td>
+                    <td>${{plano.total}}</td>
+                    {% if plano.cuota == False %}
+                    <td>1 pago de {{plano.total}}</td>
+                    {% else %}
+                    <td>3 cuotas de ${{plano.valor_cuota}}</td>
+                    {% endif %}
+                    <td>${{plano.deuda}}</td>
                     {% if plano.deuda == 0 %}
                     <td>Deuda Saldada</td>
                     {% else %}
@@ -49,13 +55,34 @@
                         <nav class="dropdownmenu">
                             <li><a>Seleccionar</a>
                                 <ul id="submenu">
-                                    <li><a href="{%url 'plano_editar' plano.id%}">Editar datos</a></li>
-                                    <li><a href="{%url 'plano_editar' plano.id%}">Datos Plano</a></li>
-                                    {% if plano.deuda == 0 %}
-                                    <li><a href="" class="boton1">Comprobante de pago</a></li>
-                                    {% elif plano.deuda > 0 %}
-                                    <li><a href="{%url 'pago_pdf' plano.id%}">Comprobante de pago</a></li>
+                                    <li><a href="{%url 'plano_editar' plano.id%}">Editar</a></li>
+                                    <li><a href="{%url 'plano_editar' plano.id%}">Plano</a></li>
+                                    {% if plano.cuota == False %}
+                                    <li><a href="{%url 'pago_nuevo' plano.id%}">pago unico</a></li>
+                                    {% else %}
+                                    <li><a href="{%url 'pago_nuevo' plano.id%}">cuota 1</a></li>
                                     {% endif %}
+
+                                    {% if plano.deuda < plano.total or plano.deuda == 0 %}
+                                    <li><a href="{%url 'pago_pdf' plano.id %}">Comprobante</a></li>
+                                    {% endif %}
+
+                                    {% if plano.cuota == True %}
+                                    <li><a href="{%url 'pago_cuota_2' plano.id%}">cuota 2</a></li>
+                                    {% endif %}
+
+                                    {% if plano.pago2 > 0 %}
+                                    <li><a href="{%url 'pago2_pdf' plano.id %}">Comprobante</a></li>
+                                    {% endif %}
+
+                                    {% if plano.cuota == True %}
+                                    <li><a href="{%url 'pago_cuota_3' plano.id%}">cuota 3</a></li>
+                                    {% endif %}
+
+                                    {% if plano.pago3 > 0 %}
+                                    <li><a href="{%url 'pago3_pdf' plano.id %}">Comprobante</a></li>
+                                    {% endif %}
+
                                 </ul>
                             </li>
                         </nav>

@@ -22,7 +22,6 @@
         <td scope="col">Catastro</td>
         <td scope="col">Celular</td>
         <td scope="col">Acciones</td>
-        <td scope="col">Servicios</td>
     </tr>
     </thead>
     <tbody>
@@ -40,17 +39,6 @@
              <td>{{usuario.tel}}</td>
             {% endif %}
             <td><a class="btn btn-primary" href="{%url 'usuario_editar' usuario.id%}">Editar</a></td>
-            <td>
-            <nav class="dropdownmenu">
-            <li><a>Seleccionar</a>
-            <ul id="submenu">
-                <li><a href="">Agua y cloacas</a></li>
-                <li><a href="{%url 'plano_nuevo' usuario.id%}">Planos</a></li>
-                <li><a href="">Cementerio</a></li>
-            </ul>
-            </li>
-            </nav>
-            </td>
         </tr>
         {%endfor%}
         {% else %}
