@@ -23,6 +23,8 @@
             <td scope="col">Deuda</td>
             <td scope="col">Estado</td>
             <td scope="col">Acciones</td>
+            <td scope="col">Pagos</td>
+
         </tr>
     </thead>
     <tbody>
@@ -41,7 +43,7 @@
                     <td>{{plano.usuario.dni}}</td>
                     <td>${{plano.total}}</td>
                     {% if plano.cuota == False %}
-                    <td>1 pago de {{plano.total}}</td>
+                    <td>1 pago de ${{plano.total}}</td>
                     {% else %}
                     <td>3 cuotas de ${{plano.valor_cuota}}</td>
                     {% endif %}
@@ -52,40 +54,47 @@
                     <td>Con Deuda</td>
                     {% endif %}
                     <td>
-                        <nav class="dropdownmenu">
-                            <li><a>Seleccionar</a>
-                                <ul id="submenu">
-                                    <li><a href="{%url 'plano_editar' plano.id%}">Editar</a></li>
-                                    <li><a href="{%url 'plano_editar' plano.id%}">Plano</a></li>
-                                    {% if plano.cuota == False %}
-                                    <li><a href="{%url 'pago_nuevo' plano.id%}">pago unico</a></li>
-                                    {% else %}
-                                    <li><a href="{%url 'pago_nuevo' plano.id%}">cuota 1</a></li>
-                                    {% endif %}
+                                                <ul class="nav nav-pills">
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{%url 'plano_editar' plano.id%}">Editar</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Más Datos</a>
+                            </div>
+                          </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="nav nav-pills">
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                                {% if plano.cuota == False %}
+                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago unico</a>
+                                {% else %}
+                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago cuota 1</a>
+                                {% endif %}
+                                {% if plano.cuota == True %}
+                                <a class="dropdown-item" href="{%url 'pago_cuota_2' plano.id%}">Pago cuota 2</a>
+                                {% endif %}
+                                {% if plano.cuota == True %}
+                                <a class="dropdown-item" href="{%url 'pago_cuota_3' plano.id%}">Pago cuota 3</a>
+                                {% endif %}
 
-                                    {% if plano.deuda < plano.total or plano.deuda == 0 %}
-                                    <li><a href="{%url 'pago_pdf' plano.id %}">Comprobante</a></li>
-                                    {% endif %}
-
-                                    {% if plano.cuota == True %}
-                                    <li><a href="{%url 'pago_cuota_2' plano.id%}">cuota 2</a></li>
-                                    {% endif %}
-
-                                    {% if plano.pago2 > 0 %}
-                                    <li><a href="{%url 'pago2_pdf' plano.id %}">Comprobante</a></li>
-                                    {% endif %}
-
-                                    {% if plano.cuota == True %}
-                                    <li><a href="{%url 'pago_cuota_3' plano.id%}">cuota 3</a></li>
-                                    {% endif %}
-
-                                    {% if plano.pago3 > 0 %}
-                                    <li><a href="{%url 'pago3_pdf' plano.id %}">Comprobante</a></li>
-                                    {% endif %}
-
-                                </ul>
-                            </li>
-                        </nav>
+                                {% if plano.deuda < plano.total or plano.deuda == 0 %}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{%url 'pago_pdf' plano.id %}">Comprobante C-1</a>
+                                {% endif %}
+                                {% if plano.pago2 > 0 %}
+                                <a class="dropdown-item" href="{%url 'pago2_pdf' plano.id %}">Comprobante C-2</a>
+                                {% endif %}
+                                {% if plano.pago3 > 0 %}
+                                <a class="dropdown-item" href="{%url 'pago3_pdf' plano.id %}">Comprobante C-3</a>
+                                {% endif %}
+                            </div>
+                          </li>
+                        </ul>
                     </td>
                 </tr>
                 {%endfor%} {% else %}

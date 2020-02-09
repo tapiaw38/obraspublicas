@@ -41,7 +41,7 @@
     <HR WIDTH=550>
     <h1>DATOS DEL PAGO</h1>
     <h2>Fecha de pago: {{planos.fecha_pago}}</h2>
-    {% if plano.cuota == False %}
+    {% if planos.cuota == False %}
     <h2>Saldo pendiente: ${{planos.deuda}}</h2>
     {% else %}
     <h2>Saldo pendiente: ${{planos.s_cuota1}}</h2>
