@@ -13,4 +13,5 @@ urlpatterns = [
     path('pago/<str:id_plano>/', pago.as_view(), name='pago_pdf'),
     path('pago2/<str:id_plano>/', pago2.as_view(), name='pago2_pdf'),
     path('pago3/<str:id_plano>/', pago3.as_view(), name='pago3_pdf'),
+    path('dato_plano/<str:id_plano>/', datos.as_view(), name='dato_plano'),
 ]

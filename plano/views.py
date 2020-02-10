@@ -81,3 +81,10 @@ class pago3(View):
         plano=Plano.objects.get(id=id_plano)
         pdf=render_pdf("plano/pago3_pdf.html",{'planos':plano})
         return HttpResponse(pdf, content_type='application/pdf')
+
+class datos(View):
+    def get(self, request,id_plano):
+        plano = Plano.objects.get(id=id_plano)
+        contexto = {'planos':plano}
+        datos = render(request,'plano/datos_planos.html',contexto)
+        return HttpResponse(datos)
