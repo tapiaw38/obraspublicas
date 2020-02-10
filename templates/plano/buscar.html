@@ -54,13 +54,13 @@
                     <td>Con Deuda</td>
                     {% endif %}
                     <td>
-                                                <ul class="nav nav-pills">
+                        <ul class="nav nav-pills">
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
                             <div class="dropdown-menu" style="">
                               <a class="dropdown-item" href="{%url 'plano_editar' plano.id%}">Editar</a>
                               <div class="dropdown-divider"></div>
-                              <a class="dropdown-item" href="#">Más Datos</a>
+                              <a class="dropdown-item" href="{%url 'dato_plano' plano.id%}">Más Datos</a>
                             </div>
                           </li>
                         </ul>

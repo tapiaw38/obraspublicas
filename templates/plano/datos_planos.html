@@ -5,40 +5,37 @@
 {%endblock%}
 
 {% block content %}
-
-                    <div class="card mb-3">
-                      <h3 class="card-header">Datos de Solicitud</h3>
-                      <div class="card-body">
-                        <h5 class="card-title">Solicitud N°{{planos.id}}</h5>
-                        <h6 class="card-subtitle text-muted">{{plano.usuario.dni}}</h6>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                      </ul>
-                      <div class="card-body">
-
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                      </div>
-                      <div class="card-footer text-muted">
-                        2 days ago
-                      </div>
-                    </div>
-                    <div class="card">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                      </div>
-                    </div>
-
-
-
+<br>
+<a class="btn btn-primary" href="{%url 'plano_listar'%}">Volver</a>
+<br>
+<br>
+<div class="col-md-4 order-md-2 mb-3">
+  <div class="card mb-3">
+    <h3 class="card-header">Datos de Solicitud</h3>
+    <div class="card-body">
+      <h5 class="card-title">Solicitud N°{{planos.id}}</h5>
+      <h5 class="card-title">{{planos.fecha}}.</h5>
+      <h5 class="card-title">{{planos.usuario.nombre}}</h5>
+      <p class="card-subtitle text-muted">DNI: {{planos.usuario.dni}}</p>
+      <p class="card-subtitle text-muted">Dirección: {{planos.usuario.direccion}}</p>
+      <p class="card-subtitle text-muted">Matricula Catastral: {{planos.usuario.catastro}}</p>
+      {% if planos.usuario.tel == None %}
+      <p class="card-subtitle text-muted">Celular: No se registo</p>
+      {% else %}
+      <p class="card-subtitle text-muted">Celular: {{planos.usuario.tel}}</p>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Datos Obra</h5>
+      <p class="card-subtitle text-muted">Dirección Obra: {{planos.dir_obra}}.</p>
+      <p class="card-subtitle text-muted">Metros del Plano: {{planos.metros}} Metos.</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Total a Abonar</h5>
+      <p class="card-subtitle text-muted">Precio por metros cuadrados: ${{planos.precio_metro}}.</p>
+      <p class="card-subtitle text-muted">Total a Pagar: ${{planos.total}}.</p>
+    </div>
+  </div>
+</div>
+<br>
 {% endblock%}
