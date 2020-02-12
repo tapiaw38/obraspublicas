@@ -9,6 +9,7 @@ class PlanoForm(forms.ModelForm):
         fields = [
             'fecha',
             'usuario',
+            'proyectista',
             'dir_obra',
             'precio_metro',
             'metros',
@@ -18,6 +19,7 @@ class PlanoForm(forms.ModelForm):
         labels = {
             'fecha':'Fecha de solicitud',
             'usuario': 'Usuario',
+            'proyectista':'Proyectista',
             'dir_obra': 'Dirección de la obra',
             'precio_metro': 'Precio por metro cuadrado',
             'metros': 'Metros totales del plano',
@@ -27,6 +29,7 @@ class PlanoForm(forms.ModelForm):
         widgets = {
             'fecha': forms.SelectDateWidget(),
             'usuario': forms.Select(attrs={'class':'form-control'}),
+            'proyectista':forms.Select(attrs={'class':'form-control'}),
             'dir_obra': forms.TextInput(attrs={'class':'form-control'}),
             'precio_metro': forms.TextInput(attrs={'class':'form-control'}),
             'metros':forms.TextInput(attrs={'class':'form-control'}),

@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Busqueda de Proyectistas
+{% endblock %}
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<br>
+<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'usuario_buscar'%}">
+ {% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+    <tr class="table-warning" >
+        <td scope="col">#</td>
+        <td scope="col">Nombre y Apellido</td>
+        <td scope="col">DNI</td>
+        <td scope="col">Dirección</td>
+        <td scope="col">Profesión</td>
+        <td scope="col">N° Matricula</td>
+        <td scope="col">Celular</td>
+        <td scope="col">Acciones</td>
+    </tr>
+    </thead>
+    <tbody>
+        {% if proyectistas%}
+        {%for   proyectista in proyectistas%}
+        <tr class="table-success">
+            <td>{{proyectista.id}}</td>
+            <td>{{proyectista.nombre}}</td>
+            <td>{{proyectista.dni}}</td>
+            <td>{{proyectista.direccion}}</td>
+            <td>{{proyectista.profesion}}</td>
+            <td>{{proyectista.maticula}}</td>
+            {% if proyectista.tel == None %}
+            <td>Sin Celular</td>
+            {% else %}
+             <td>{{proyectista.tel}}</td>
+            {% endif %}
+            <td><a class="btn btn-primary" href="{%url 'proyectista_editar' proyectista.id%}">Editar</a></td>
+        </tr>
+        {%endfor%}
+        {% else %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Ups! </strong>tú busqueda no dio resultados, <a href="{%url 'proyectista_listar'%}" class="alert-link">intentalo de nuevo</a>.
+        </div>
+        {%endif%}
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if proyectistas.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ proyectistas.previous_page_number }}">Previous</a></li>
+      {% endif%}
+      {% if proyectistas.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ proyectistas.next_page_number }}">Next</a></li>
+      {% endif%}
+  </ul>
+</nav>
+{% endblock%}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('#botonBus').click(function() {
+            var buscar = $('#busca').val();
+            if (buscar==""){
+                window.alert('Ingresa un DNI para realizar una busqueda');
+            }
+        });
+    });
+</script>
+{% endblock %}

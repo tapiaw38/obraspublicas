@@ -1,11 +1,13 @@
 from django.db import models
 from usuario.models import Usuario
+from proyectista.models import Proyectista
 # Create your models here.
 
 
 class Plano(models.Model):
     fecha = models.DateField()
     usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
+    proyectista = models.ForeignKey(Proyectista, null=False, blank=False, on_delete=models.CASCADE)
     dir_obra = models.CharField(max_length=50)
     precio_metro = models.IntegerField()
     metros = models.IntegerField()
