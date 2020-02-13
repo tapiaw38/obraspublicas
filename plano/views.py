@@ -34,6 +34,12 @@ class pago_create3(UpdateView):
     template_name = 'plano/pago_form3.html'
     success_url = reverse_lazy('plano_listar')
 
+class pago_create4(UpdateView):
+    model = Plano
+    form_class = DeudaForm3
+    template_name = 'plano/pago_form4.html'
+    success_url = reverse_lazy('plano_listar')
+
 class plano_list(ListView):
     model = Plano
     template_name = 'plano/plano_list.html'
@@ -80,6 +86,13 @@ class pago3(View):
     def get(self,request,id_plano):
         plano=Plano.objects.get(id=id_plano)
         pdf=render_pdf("plano/pago3_pdf.html",{'planos':plano})
+        return HttpResponse(pdf, content_type='application/pdf')
+
+class pago4(View):
+    #regresa PDF basada en templae html
+    def get(self,request,id_plano):
+        plano=Plano.objects.get(id=id_plano)
+        pdf=render_pdf("plano/pago4_pdf.html",{'planos':plano})
         return HttpResponse(pdf, content_type='application/pdf')
 
 class datos(View):

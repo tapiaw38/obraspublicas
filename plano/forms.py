@@ -26,6 +26,13 @@ class PlanoForm(forms.ModelForm):
             'cuota': 'Pago en cuotas',
         }
 
+        CHOISES = (
+            (1, '1'),
+            (2, '2'),
+            (3, '3'),
+            (4, '4'),
+        )
+
         widgets = {
             'fecha': forms.SelectDateWidget(),
             'usuario': forms.Select(attrs={'class':'form-control'}),
@@ -33,7 +40,7 @@ class PlanoForm(forms.ModelForm):
             'dir_obra': forms.TextInput(attrs={'class':'form-control'}),
             'precio_metro': forms.TextInput(attrs={'class':'form-control'}),
             'metros':forms.TextInput(attrs={'class':'form-control'}),
-            'cuota':forms.NullBooleanSelect(),
+            'cuota':forms.Select(choices=CHOISES),
         }
 
 class DeudaForm(forms.ModelForm):
@@ -91,4 +98,23 @@ class DeudaForm3(forms.ModelForm):
         widgets = {
             'pago3' : forms.TextInput(attrs={'class':'form-control'}),
             'fecha_pago3' : forms.SelectDateWidget(),
+        }
+
+class DeudaForm4(forms.ModelForm):
+    class Meta:
+        model = Plano
+
+        fields = [
+            'pago4',
+            'fecha_pago4',
+        ]
+
+        labels = {
+            'pago4':'Total abonado',
+            'fecha_pago4':'Fecha de pago cuota 4',
+        }
+
+        widgets = {
+            'pago4' : forms.TextInput(attrs={'class':'form-control'}),
+            'fecha_pago4' : forms.SelectDateWidget(),
         }

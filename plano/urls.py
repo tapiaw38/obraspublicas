@@ -7,6 +7,7 @@ urlpatterns = [
     path('pago_nuevo/<pk>/', views.pago_create.as_view(), name='pago_nuevo'),
     path('pago_cuota_2/<pk>/', views.pago_create2.as_view(), name='pago_cuota_2'),
     path('pago_cuota_3/<pk>/', views.pago_create3.as_view(), name='pago_cuota_3'),
+    path('pago_cuota_4/<pk>/', views.pago_create4.as_view(), name='pago_cuota_4'),
     path('listar/', views.plano_list.as_view(), name='plano_listar'),
     path('editar/<pk>/',views.plano_edit.as_view(), name='plano_editar'),
     path('buscar/', views.plano_search, name='plano_buscar'),
