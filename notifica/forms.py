@@ -15,7 +15,7 @@ class NotificaForm(forms.ModelForm):
         ]
 
         labels = {
-            'fecha':'Fecha del Hecho',
+            'fecha':'Fecha y Hora del Hecho',
             'lugar':'Lugar del Hecho',
             'caracteristicas':'Caracteristicas del Hecho',
             'usuario':'Usuario',

@@ -14,7 +14,7 @@
 <br>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning" >
+    <tr class="table-warning">
         <td scope="col">#</td>
         <td scope="col">Fecha del Hecho</td>
         <td scope="col">Lugar del Hecho</td>
@@ -31,11 +31,9 @@
     <tbody>
             {% if object_list%}
             {%for notifica in object_list%}
-                {% if notifica.situacion == True %}
+                {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
         <tr class="table-success">
-                {% elif f_actual < notifica.fecha_limite %}
-            <tr class="table-danger">
-                {% else %}
+                {% elif f_actual > notifica.fecha_limite %}
                 <tr class="table-primary">
                     {% endif %}
             <td>{{notifica.id}}</td>
@@ -45,7 +43,7 @@
             <td>{{notifica.usuario.nombre}}</td>
                 <td>{{notifica.usuario.dni}}</td>
                 <td>{{notifica.usuario.catastro}}</td>
-                <td>{{notifica.hechos}}</td>+
+                <td>{{notifica.hechos}}</td>
                 <td>{{notifica.fecha_limite}}</td>
             {% if notifica.situacion == False %}
             <td>No</td>
