@@ -27,9 +27,8 @@ class notifica_list(ListView):
 def notifica_list(request):
     notifica = Notifica.objects.all()
     for i in notifica:
-        i.fecha_limite = i.fecha + datetime.timedelta(days=1)
-    tiempo_actual = datetime.datetime.now(timezone.utc)
-    contexto = {'object_list':notifica, 'f_actual':tiempo_actual}
+        i.fecha_limite = i.fecha + datetime.timedelta(days=30)
+    contexto = {'object_list':notifica, 'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request,'notifica/notifica_list.html',contexto)
 
 class notifica_edit(UpdateView):

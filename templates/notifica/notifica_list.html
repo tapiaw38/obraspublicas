@@ -32,9 +32,9 @@
             {% if object_list%}
             {%for notifica in object_list%}
                 {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
-        <tr class="table-success">
+        <tr class="table-info">
                 {% elif f_actual > notifica.fecha_limite %}
-                <tr class="table-primary">
+                <tr class="table-danger">
                     {% endif %}
             <td>{{notifica.id}}</td>
             <td>{{notifica.fecha}}</td>

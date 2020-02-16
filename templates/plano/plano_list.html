@@ -43,9 +43,9 @@
         {% if object_list%}
             {%for plano in object_list%}
                 {% if plano.deuda == 0 %}
-        <tr class="table-success">
+        <tr class="table-info">
                 {% elif plano.deuda %}
-            <tr class="table-primary">
+            <tr class="table-danger">
                 {% else %}
                 <tr class="table-danger">
                     {% endif %}
