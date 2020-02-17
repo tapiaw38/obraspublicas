@@ -32,9 +32,9 @@
             {% if object_list%}
             {%for notifica in object_list%}
                 {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
-        <tr class="table-info">
+        <tr class="table-success">
                 {% elif f_actual > notifica.fecha_limite %}
-                <tr class="table-danger">
+            <tr class="table-danger">
                     {% endif %}
             <td>{{notifica.id}}</td>
             <td>{{notifica.fecha}}</td>
@@ -43,14 +43,28 @@
             <td>{{notifica.usuario.nombre}}</td>
                 <td>{{notifica.usuario.dni}}</td>
                 <td>{{notifica.usuario.catastro}}</td>
-                <td>{{notifica.hechos}}</td>
+                <td><a class="btn btn-primary" href="{%url 'dato_notifica' notifica.id %}">Ver</a></td>
                 <td>{{notifica.fecha_limite}}</td>
             {% if notifica.situacion == False %}
-            <td>No</td>
+            <td>No se presento</td>
             {% elif notifica.situacion == True %}
-             <td>SI</td>
+             <td>{{notifica.fecha_presenta}}</td>
             {% endif %}
-            <td><a class="btn btn-primary" href="{%url 'notifica_editar' notifica.id%}">Editar</a></td>
+
+                <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{%url 'notifica_editar' notifica.id%}">Editar</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="">Crea Notificación</a>
+                                <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%url 'presenta_editar' notifica.id%}">Presentacion persona</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
         </tr>
         {%endfor%}
         {% else %}

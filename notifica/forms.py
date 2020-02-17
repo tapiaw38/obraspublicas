@@ -11,7 +11,6 @@ class NotificaForm(forms.ModelForm):
             'caracteristicas',
             'usuario',
             'hechos',
-            'situacion',
         ]
 
         labels = {
@@ -20,7 +19,6 @@ class NotificaForm(forms.ModelForm):
             'caracteristicas':'Caracteristicas del Hecho',
             'usuario':'Usuario',
             'hechos':'Hechos Presuntamente Infraccionales',
-            'situacion': 'Presentación',
         }
 
         widgets = {
@@ -29,5 +27,23 @@ class NotificaForm(forms.ModelForm):
             'caracteristicas': forms.TextInput(attrs={'class': 'form-control'}),
             'usuario': forms.Select(),
             'hechos': forms.Textarea(attrs={'class': 'form-control','rows':3}),
+        }
+
+class PresentaForm(forms.ModelForm):
+    class Meta:
+        model = Notifica
+
+        fields = [
+            'situacion',
+            'fecha_presenta',
+        ]
+
+        labels = {
+            'situacion': 'Presentación',
+            'fecha_presenta':'Fecha de presentación',
+        }
+
+        widgets = {
             'situacion': forms.NullBooleanSelect(),
+            'fecha_presenta' : forms.SelectDateWidget(),
         }

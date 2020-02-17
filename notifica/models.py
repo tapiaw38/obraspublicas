@@ -11,7 +11,7 @@ class Notifica(models.Model):
     hechos = models.CharField(max_length=200)
     situacion = models.NullBooleanField(default=False)
     fecha_limite = models.DateTimeField(null=True, blank=True)
-    fecha_hoy = datetime.datetime.now()
+    fecha_presenta = models.DateField(null=True, blank=True)
 
 
 

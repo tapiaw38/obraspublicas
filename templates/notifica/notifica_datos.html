@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<a class="btn btn-primary" href="{%url 'notifica_listar'%}">Volver</a>
+<br>
+<br>
+<div class="col-md-4 order-md-2 mb-3">
+  <div class="card mb-3">
+    <h3 class="card-header">Hechos presuntamente infraccionales</h3>
+    <div class="card-body">
+      <h5 class="card-title">Acta N°{{notificas.id}}</h5>
+      <h5 class="card-title">{{notificas.fecha}} Hs.</h5>
+      <h5 class="card-title">{{notificas.usuario.nombre}}</h5>
+      <p class="card-subtitle text-muted">DNI: {{notificas.usuario.dni}}</p>
+      <p class="card-subtitle text-muted">Dirección: {{notificas.usuario.direccion}}</p>
+      <p class="card-subtitle text-muted">Matricula Catastral: {{notificas.usuario.catastro}}</p>
+      {% if notificas.usuario.tel == None %}
+      <p class="card-subtitle text-muted">Celular: No se registo</p>
+      {% else %}
+      <p class="card-subtitle text-muted">Celular: {{notificas.usuario.tel}}</p>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Detalle de la infracción</h5>
+      <p class="card-subtitle text-muted">Lugar del hecho: {{notificas.lugar}}.</p>
+      <p class="card-subtitle text-muted">Caracteristicas del hecho: {{notificas.caracteristicas}}.</p>
+      <br>
+        <p class="card-subtitle text-muted">Hechos: {{notificas.hechos}}.</p>
+    </div>
+  </div>
+</div>
+<br>
+{% endblock%}
