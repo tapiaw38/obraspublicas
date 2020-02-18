@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'plano',
     'proyectista',
     'notifica',
+    'obra',
 ]
 
 MIDDLEWARE = [

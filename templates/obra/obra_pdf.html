@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+{%block content%}
+{% csrf_token %}
+
+
+<form method="post" type="w">
+    <h1 align="right">Tinogasta {{fecha_hoy}}</h1>
+    <HR WIDTH=550>
+    <div>
+        <h1 align="Center">MUNICIPALIDAD DE TINOGASTA</h1>
+        <h1 align="Center">INSPECCIÓN GENERAL</h1>
+        <h1>NOTIFICACIÓN</h1>
+        <h1>SEÑOR/A: {{obras.usuario.nombre}}</h1>
+        <h1>DNI: {{obras.usuario.dni}}</h1>
+        <h1>Domicilio Particular: {{obras.usuario.direccion}}</h1>
+    </div>
+    <HR WIDTH=550>
+    <h1>EMPLAZAMIENTO</h1>
+        <ul>
+            <h1>
+                Ante el hecho constatado, se procede a INTIMAR al inspeccionado para que en el termino de {{obras.dias}} días,
+                proceda a regularizar su situación, por lo que debe presentarse en la oficina de la Secretraria de Obras
+                Publica, de lunes a viernes de HS. 07:00 A 12:00 A los fines de precentar planos correspondientes a la
+                obra ubicada en {{obras.ubicacion_obra}}.
+                Requisitos para presentacón: (PLANO DE RELEVAMIENTO) planta general, corte horizontal y longitudinal, fachada,
+                 esquema electrico, P. de techo, datos del propietario, croquis de ubicación. esq. red cloacal, (PRESENTACIÓN
+                 EN CARPETA) PROYECTO PLANO (planta general, faqchada, P sanitaria( instalación de agua f y c, cloaca),
+                instalación electrica, planta de estructura, planta de techo, planilla de cálculo, losa, columna y vigas,
+                bases o memoria de cálculo, rotulo con datos de propietario, croquis de ubicación, instalación en colores
+                convencionales , (PRESENTACÍON EN CARPETA). En caso de no presentar dicha documentación requerida por el
+                articulo 45° de la Ordenanza Impositiva Municipal y el articulo 51° del codigo de falta, el cual acude ...
+                "Quien efectuare obras sin la correspondiente aprobación de planos, será sancionado con una multa que oscilara
+                entre cincuenta veces el importe al pago a los derechos de construcción, en caso de tenerla deberá presentar
+                para su verificación".
+            </h1>
+        </ul>
+        <ul>
+            <h1>
+                Otro de los requisitos fundamentales para la aprobación de planos es:
+                Constar con la constancia de la linea municipal otorgado por Catastro Municipal.
+            </h1>
+        </ul>
+        <ul>
+            <h1>
+                Presentación de plano por cuadruplicado
+                Para mayor información dirigirse a Secretaria de Obras Publicas, ubicado en calle Antonio del Pino (planta baja)
+                en la Municipalidad de Tinogasta.
+            </h1>
+            <h1 align="right">Sin otro particular lo saludo Atte.</h1>
+        </ul>
+</form>
+
+{%endblock%}
+</body>
+</html>
+
+
+
+
+
+

@@ -23,5 +23,6 @@ urlpatterns = [
     path('plano/',include('plano.urls')),
     path('proyectista/', include('proyectista.urls')),
     path('notificacion/', include('notifica.urls')),
+    path('inspeccion/', include('obra.urls')),
     path('', views.index.as_view(), name='index')
 ]

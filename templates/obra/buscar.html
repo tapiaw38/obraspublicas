@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+
+{% block title%}
+Busqueda de Clientes
+{% endblock %}
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<br>
+<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'obra_buscar'%}">
+ {% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+    <tr class="table-warning" >
+        <td scope="col">#</td>
+        <td scope="col">Fecha del Hecho</td>
+        <td scope="col">Lugar del Hecho</td>
+        <td scope="col">Cacteristicas del Hecho</td>
+        <td scope="col">Usuario</td>
+        <td scope="col">DNI</td>
+        <td scope="col">Catastro</td>
+        <td scope="col">Hechos Infraccionales</td>
+        <td scope="col">Fecha de Presentación</td>
+        <td scope="col">Presentación</td>
+        <td scope="col">Acciones</td>
+    </tr>
+    </thead>
+    <tbody>
+{% if object_list%}
+            {%for obra in object_list%}
+                {% if obra.presentacion == True or f_actual < obra.fecha_limite %}
+        <tr class="table-success">
+                {% elif f_actual > obra.fecha_limite %}
+            <tr class="table-danger">
+                    {% endif %}
+            <td>{{obra.id}}</td>
+            <td>{{obra.fecha}}</td>
+            <td>{{obra.usuario.nombre}}</td>
+                <td>{{obra.usuario.dni}}</td>
+                <td>{{obra.ubicacion_obra}}</td>
+                <td>{{obra.dias}}</td>
+                <td>{{obra.fecha_limite}}</td>
+            {% if obra.presentacion == False %}
+            <td>No se presento</td>
+            {% elif obra.presentacion == True %}
+             <td>{{obra.fecha_presenta}}</td>
+            {% endif %}
+
+                <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{%url 'obra_editar' obra.id%}">Editar</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%url 'notifica_obra_pdf' obra.id%}">Crea Notificación</a>
+                                <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%url 'presenta_editar' obra.id%}">Presentacion persona</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+        </tr>
+        {%endfor%}
+        {% else %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Ups! </strong>tú registro esta vacio, <a href="{% url 'obra_nuevo' %}" class="alert-link">ingresa uno</a>.
+        </div>
+        {%endif%}
+    </tbody>
+</table>
+{% endblock%}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('#botonBus').click(function() {
+            var buscar = $('#busca').val();
+            if (buscar==""){
+                window.alert('Ingresa un DNI para realizar una busqueda');
+            }
+        });
+    });
+</script>
+{% endblock %}
