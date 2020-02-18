@@ -50,7 +50,7 @@ def obra_search(request):
         page = request.GET.get('page')
         obra = paginator.get_page(page)
     for i in obra:
-        i.fecha_limite = i.fecha + datetime.timedelta(days=30)
+        i.fecha_limite = i.fecha + datetime.timedelta(days=i.dias)
     contexto = {'object_list': obra,'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request, 'obra/buscar.html',contexto)
 

@@ -24,12 +24,11 @@
             <td scope="col">Estado</td>
             <td scope="col">Acciones</td>
             <td scope="col">Pagos</td>
-
         </tr>
     </thead>
     <tbody>
-         {% if planos %}
-            {%for plano in planos%}
+         {% if object_list%}
+            {%for plano in object_list%}
                 {% if plano.deuda == 0 %}
         <tr class="table-success">
                 {% elif plano.deuda %}
@@ -42,10 +41,14 @@
                     <td>{{plano.usuario.nombre}}</td>
                     <td>{{plano.usuario.dni}}</td>
                     <td>${{plano.total}}</td>
-                    {% if plano.cuota == False %}
+                    {% if plano.cuota == 1 %}
                     <td>1 pago de ${{plano.total}}</td>
-                    {% else %}
+                    {% elif plano.cuota == 2 %}
+                    <td>2 cuotas de ${{plano.valor_cuota}}</td>
+                    {% elif plano.cuota == 3 %}
                     <td>3 cuotas de ${{plano.valor_cuota}}</td>
+                    {% elif plano.cuota == 4 %}
+                    <td>4 cuotas de ${{plano.valor_cuota}}</td>
                     {% endif %}
                     <td>${{plano.deuda}}</td>
                     {% if plano.deuda == 0 %}
@@ -70,27 +73,34 @@
                           <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
                             <div class="dropdown-menu" style="">
-                                {% if plano.cuota == False %}
-                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago unico</a>
-                                {% else %}
+                                {% if plano.cuota == 1 %}
                                 <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago cuota 1</a>
-                                {% endif %}
-                                {% if plano.cuota == True %}
+                                {% elif plano.cuota == 2 %}
+                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago cuota 1</a>
                                 <a class="dropdown-item" href="{%url 'pago_cuota_2' plano.id%}">Pago cuota 2</a>
-                                {% endif %}
-                                {% if plano.cuota == True %}
+                                {% elif plano.cuota == 3 %}
+                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago cuota 1</a>
+                                <a class="dropdown-item" href="{%url 'pago_cuota_2' plano.id%}">Pago cuota 2</a>
                                 <a class="dropdown-item" href="{%url 'pago_cuota_3' plano.id%}">Pago cuota 3</a>
+                                {% elif plano.cuota == 4 %}
+                                <a class="dropdown-item" href="{%url 'pago_nuevo' plano.id%}">Pago cuota 1</a>
+                                <a class="dropdown-item" href="{%url 'pago_cuota_2' plano.id%}">Pago cuota 2</a>
+                                <a class="dropdown-item" href="{%url 'pago_cuota_3' plano.id%}">Pago cuota 3</a>
+                                <a class="dropdown-item" href="{%url 'pago_cuota_4' plano.id%}">Pago cuota 4</a>
                                 {% endif %}
 
-                                {% if plano.deuda < plano.total or plano.deuda == 0 %}
+                                {% if plano.pago > 0 %}
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{%url 'pago_pdf' plano.id %}">Comprobante C-1</a>
+                                <a class="dropdown-item" href="{%url 'pago_pdf' plano.id %}">Comprobante 1</a>
                                 {% endif %}
                                 {% if plano.pago2 > 0 %}
-                                <a class="dropdown-item" href="{%url 'pago2_pdf' plano.id %}">Comprobante C-2</a>
+                                <a class="dropdown-item" href="{%url 'pago2_pdf' plano.id %}">Comprobante 2</a>
                                 {% endif %}
                                 {% if plano.pago3 > 0 %}
-                                <a class="dropdown-item" href="{%url 'pago3_pdf' plano.id %}">Comprobante C-3</a>
+                                <a class="dropdown-item" href="{%url 'pago3_pdf' plano.id %}">Comprobante 3</a>
+                                {% endif %}
+                                {% if plano.pago4 > 0 %}
+                                <a class="dropdown-item" href="{%url 'pago4_pdf' plano.id %}">Comprobante 4</a>
                                 {% endif %}
                             </div>
                           </li>
@@ -105,15 +115,6 @@
                 {%endif%}
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        {% if planos.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ planos.previous_page_number }}">Previous</a></li>
-        {% endif%} {% if planos.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ planos.next_page_number }}">Next</a></li>
-        {% endif%}
-    </ul>
-</nav>
 
 {% endblock%}
 

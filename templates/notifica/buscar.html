@@ -33,12 +33,12 @@ Busqueda de Clientes
     </tr>
     </thead>
     <tbody>
-{% if object_list%}
+       {% if object_list%}
             {%for notifica in object_list%}
                 {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
         <tr class="table-success">
                 {% elif f_actual > notifica.fecha_limite %}
-                <tr class="table-danger">
+            <tr class="table-danger">
                     {% endif %}
             <td>{{notifica.id}}</td>
             <td>{{notifica.fecha}}</td>
@@ -47,14 +47,28 @@ Busqueda de Clientes
             <td>{{notifica.usuario.nombre}}</td>
                 <td>{{notifica.usuario.dni}}</td>
                 <td>{{notifica.usuario.catastro}}</td>
-                <td>{{notifica.hechos}}</td>
+                <td><a class="btn btn-primary" href="{%url 'dato_notifica' notifica.id %}">Ver</a></td>
                 <td>{{notifica.fecha_limite}}</td>
             {% if notifica.situacion == False %}
-            <td>No</td>
+            <td>No se presento</td>
             {% elif notifica.situacion == True %}
-             <td>SI</td>
+             <td>{{notifica.fecha_presenta}}</td>
             {% endif %}
-            <td><a class="btn btn-primary" href="{%url 'notifica_editar' notifica.id%}">Editar</a></td>
+
+                <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{%url 'notifica_editar' notifica.id%}">Editar</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%url 'notifica_pdf' notifica.id%}">Crea Notificación</a>
+                                <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="{%url 'presenta_editar' notifica.id%}">Presentacion persona</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
         </tr>
         {%endfor%}
         {% else %}
@@ -65,16 +79,6 @@ Busqueda de Clientes
         {%endif%}
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-      {% if notificas.has_previous %}
-    <li class="page-item"><a class="page-link" href="?page={{ notificas.previous_page_number }}">Previous</a></li>
-      {% endif%}
-      {% if notificas.has_next %}
-    <li class="page-item"><a class="page-link" href="?page={{ notificas.next_page_number }}">Next</a></li>
-      {% endif%}
-  </ul>
-</nav>
 {% endblock%}
 
 {% block js %}

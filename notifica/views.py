@@ -26,6 +26,12 @@ class presenta_update(UpdateView):
     template_name = 'notifica/presenta_form.html'
     success_url = reverse_lazy('notifica_listar')
 
+class notifica_edit(UpdateView):
+    model = Notifica
+    form_class = NotificaForm
+    template_name = 'notifica/notifica_form.html'
+    success_url = reverse_lazy('notifica_listar')
+
 '''
 class notifica_list(ListView):
     model = Notifica
@@ -36,16 +42,9 @@ class notifica_list(ListView):
 def notifica_list(request):
     notifica = Notifica.objects.all()
     for i in notifica:
-        i.fecha_limite = i.fecha + datetime.timedelta(days=30)
+        i.fecha_limite = i.fecha + datetime.timedelta(days=3)
     contexto = {'object_list':notifica, 'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request,'notifica/notifica_list.html',contexto)
-
-class notifica_edit(UpdateView):
-    model = Notifica
-    form_class = NotificaForm
-    template_name = 'notifica/notifica_form.html'
-    success_url = reverse_lazy('notifica_listar')
-
 
 def notifica_search(request):
     buscar = request.POST.get('buscalo')
@@ -57,7 +56,7 @@ def notifica_search(request):
         page = request.GET.get('page')
         notifica = paginator.get_page(page)
     for i in notifica:
-        i.fecha_limite = i.fecha + datetime.timedelta(days=30)
+        i.fecha_limite = i.fecha + datetime.timedelta(days=3)
     contexto = {'object_list': notifica,'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request, 'notifica/buscar.html',contexto)
 

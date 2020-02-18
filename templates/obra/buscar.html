@@ -20,20 +20,18 @@ Busqueda de Clientes
     <thead>
     <tr class="table-warning" >
         <td scope="col">#</td>
-        <td scope="col">Fecha del Hecho</td>
-        <td scope="col">Lugar del Hecho</td>
-        <td scope="col">Cacteristicas del Hecho</td>
+        <td scope="col">Fecha de Inspeccion</td>
         <td scope="col">Usuario</td>
         <td scope="col">DNI</td>
-        <td scope="col">Catastro</td>
-        <td scope="col">Hechos Infraccionales</td>
-        <td scope="col">Fecha de Presentación</td>
+        <td scope="col">Ubicación de la Obra</td>
+        <td scope="col">Dias de plazo</td>
+        <td scope="col">Fecha Limite</td>
         <td scope="col">Presentación</td>
         <td scope="col">Acciones</td>
     </tr>
     </thead>
     <tbody>
-{% if object_list%}
+        {% if object_list%}
             {%for obra in object_list%}
                 {% if obra.presentacion == True or f_actual < obra.fecha_limite %}
         <tr class="table-success">

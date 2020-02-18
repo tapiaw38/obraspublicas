@@ -56,15 +56,12 @@ def plano_search(request):
     buscar = request.POST.get('buscalo')
     if buscar:
         plano=Plano.objects.filter(usuario__dni__contains=buscar)
-        paginator = Paginator(plano, 7)
-        page = request.GET.get('page')
-        plano = paginator.get_page(page)
     else:
         plano = Plano.objects.all()
         paginator = Paginator(plano, 7)
         page = request.GET.get('page')
         plano = paginator.get_page(page)
-    contexto = {'planos': plano}
+    contexto = {'object_list': plano}
     return render(request, 'plano/buscar.html',contexto)
 
 class pago(View):
