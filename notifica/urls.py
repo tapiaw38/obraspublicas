@@ -10,4 +10,5 @@ urlpatterns = [
     path('presenta_editar/<pk>/', views.presenta_update.as_view(), name='presenta_editar'),
     path('buscar/', views.notifica_search, name='notifica_buscar'),
     path('dato_notifica/<str:id_notifica>/', datos.as_view(), name='dato_notifica'),
+    path('notificar/<str:id_notifica>/',notifica_pdf.as_view(), name='notifica_pdf'),
 ]

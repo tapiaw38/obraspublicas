@@ -11,6 +11,8 @@ from django.views.generic import View
 from django.views.generic import CreateView, ListView, UpdateView, TemplateView
 from django.urls import reverse_lazy
 
+from obraspublicas.utileria import render_pdf
+
 
 class notifica_create(CreateView):
     model = Notifica
@@ -68,3 +70,12 @@ class datos(View):
         contexto = {'notificas':notifica}
         datos = render(request,'notifica/notifica_datos.html',contexto)
         return HttpResponse(datos)
+
+class notifica_pdf(View):
+    #regresa PDF basada en templae html
+    def get(self,request,id_notifica):
+        notifica=Notifica.objects.get(id=id_notifica)
+        f = datetime.datetime.now()
+        f_hoy = f.strftime("%d de %B de %Y")
+        pdf=render_pdf("notifica/notifica_pdf.html",{'notificas':notifica,'fecha_hoy':f_hoy})
+        return HttpResponse(pdf, content_type='application/pdf')
