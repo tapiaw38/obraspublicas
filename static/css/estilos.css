@@ -1,0 +1,42 @@
+#img{
+    width: 800px;
+    height: auto;
+    margin: auto;
+    display: block;
+    border-radius: 20px;
+    /*box-shadow: 5px 5px 0px #000;*/
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+#imgred{
+    width: 100px;
+    height:auto;
+    display:block;
+}
+
+.icon-nav{
+    width:45px;
+    height:auto;
+}
+
+.icon-nav:hover{
+    filter:invert(100%);
+}
+
+.boton-circulo{
+
+    width: 120px;
+    margin-left:20px;
+    margin-right:20px;
+}
+
+.boton-circulo:hover{
+    transform:scale(1.2);
+    -ms-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    -webkit-transform:scale(1.2);
+    -webkit-transition: all 500ms;
+
+}

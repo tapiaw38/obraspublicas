@@ -1,32 +1,55 @@
 {%extends 'base/base.html'%}
-
-
+	{% load static %}
 
 {% block content %}
 <div class="jumbotron">
-  <p class="lead text-center">Obras Publicas Municipalidad de Tinogasta.</p>
+  <h1 class="lead text-center">Secretaria de Obras Publicas</h1>
   <hr class="my-4">
-  <p class="text-center">Prueba las diversas funcionalidades para registrar, listar usuarios y servicios.</p>
-    <p class="text-center">Además podrás generar comprobantes y recibos de pagos en formato PDF.</p>
-</div>
-  <p class="lead text-center">
-      <a class="btn btn-success btn-lg d-inline-block m-1" href="{%url 'usuario_listar'%}" role="button">USUARIOS</a>
-      <a class="btn btn-success btn-lg d-inline-block m-1" href="{%url 'plano_listar'%}" role="button">PLANOS</a>
-      <a class="btn btn-success btn-lg d-inline-block m-1" href="" role="button">CONEXIONES</a>
-      <a class="btn btn-success btn-lg d-inline-block m-1" href="" role="button">CEMENTERIO</a>
-      <a class="btn btn-success btn-lg d-inline-block m-1" href="" role="button">NOTIFICACIONES</a>
-  </p>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <a class="navbar-brand" href="{%url 'usuario_listar'%}">
+        <img class="boton-circulo ecirculo" src="{% static 'img/b-1.png' %}" class="d-inline-block">
+      </a>
 
+      <a class="navbar-brand" href="{%url 'proyectista_listar'%}">
+        <img class="boton-circulo ecirculo" src="{% static 'img/b-2.png' %}" class="d-inline-block">
+      </a>
+
+        <a class="navbar-brand" href="{%url 'obra_listar'%}">
+        <img class="boton-circulo ecirculo" src="{% static 'img/b-3.png' %}" class="d-inline-block">
+      </a>
+
+        <a class="navbar-brand" href="{%url 'plano_listar'%}">
+        <img class="boton-circulo ecirculo" src="{% static 'img/b-4.png' %}" class="d-inline-block">
+      </a>
+
+          <a class="navbar-brand" href="{%url 'notifica_listar'%}">
+        <img class="boton-circulo ecirculo" src="{% static 'img/b-5.png' %}" class="d-inline-block">
+      </a>
+    </div>
+</div>
 
 {%endblock%}
 
 <!-- /.container -->
 {%block footer%}
 
-<footer class="blog-footer">
-  <p class="text-center">Servicio de software a medida.</p>
-  <p class="text-center">
-    <a>Copyright CHIPMUNK SOFTWARE © 2019. All rights reserved.</a>
-  </p>
-</footer>
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; RED SOLUCIONES INFORMATICAS</p>
+    </div>
+      <div align="center" class="justify-content-md-center">
+                  <img src="{% static 'img/red.png' %}" style="width: 80px; height:auto;">
+		<a class="navbar-brand" href="https://www.facebook.com/RedTinogasta/">
+			<img src="{% static 'img/facebook.png' %}" class="d-inline-block icon-nav">
+		</a>
+		<a class="navbar-brand" style="font-size:15px">
+			<img src="{% static 'img/telefono.png' %}" class="d-inline-block icon-nav"> Tel. +54-3837-420540
+		</a>
+          <a class="navbar-brand" style="font-size:15px">
+			<img src="{% static 'img/mail.png' %}" class="d-inline-block icon-nav">Email: sdcordoba@yahoo.com.ar
+
+		</a>
+      </div>
+    <!-- /.container -->
+  </footer>
 {%endblock%}

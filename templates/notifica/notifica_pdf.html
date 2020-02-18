@@ -10,50 +10,73 @@
 
 
 <form method="post" type="w">
-    <h1 align="right">Tinogasta {{fecha_hoy}}</h1>
-    <HR WIDTH=550>
+    <h3>ACTA N° {{notificas.id}}</h3>
+    <h3>LUGAR DEL HECHO</h3>
+    <h3>{{notificas.lugar}}</h3>
+    <h1>SECRETARIA DE OBRAS PUBLICAS</h1>
+    <h1>MUNICIPALIDAD DE TINOGASTA</h1>
+    <HR WIDTH=500>
     <div>
-        <h1 align="Center">MUNICIPALIDAD DE TINOGASTA</h1>
-        <h1 align="Center">INSPECCIÓN GENERAL</h1>
-        <h1>NOTIFICACIÓN</h1>
-        <h1>SEÑOR/A: {{notificas.usuario.nombre}}</h1>
-        <h1>DNI: {{notificas.usuario.dni}}</h1>
-        <h1>Domicilio Particular: {{notificas.usuario.direccion}}</h1>
+        <h3>DIA/MES/AÑO/HORA.</h3>
+        <h3>{{notificas.fecha}}Hs..</h3>
+        <h3>CARACTERISTICAS DEL HECHO</h3>
+        <h3>{{notificas.hechos}}</h3>
+        <h3>MAT. CATASTRAL: {{notificas.usuario.catastro}}</h3>
+        <h3>NOMBRE Y APELLIDO: {{notificas.usuario.nombre}}</h3>
+        <h3>DNI: {{notificas.usuario.dni}}</h3>
+        <h3>DOMICILIO PARTICULAR: {{notificas.usuario.direccion}}</h3>
+        <h3>CODIGO POSTAL: 5340</h3>
     </div>
-    <HR WIDTH=550>
-    <h1>EMPLAZAMIENTO</h1>
+    <HR WIDTH=500>
+    <h1>HECHOS PRESUNTAMENTE INFRACCIONALES: </h1>
         <ul>
-            <h1>
-                Ante el hecho constatado, se procede a INTIMAR al inspeccionado para que en el termino de ...... días,
-                proceda a regularizar su situación, por lo que debe presentarse en la oficina de la Secretraria de Obras
-                Publica, de lunes a viernes de HS. 07:00 A 12:00 A los fines de precentar planos correspondientes a la
-                obra ubicada en {{notificas.lugar}}.
-                Requisitos para presentacón: (PLANO DE RELEVAMIENTO) planta general, corte horizontal y longitudinal, fachada,
-                 esquema electrico, P. de techo, datos del propietario, croquis de ubicación. esq. red cloacal, (PRESENTACIÓN
-                 EN CARPETA) PROYECTO PLANO (planta general, faqchada, P sanitaria( instalación de agua f y c, cloaca),
-                instalación electrica, planta de estructura, planta de techo, planilla de cálculo, losa, columna y vigas,
-                bases o memoria de cálculo, rotulo con datos de propietario, croquis de ubicación, instalación en colores
-                convencionales , (PRESENTACÍON EN CARPETA). En caso de no presentar dicha documentación requerida por el
-                articulo 45° de la Ordenanza Impositiva Municipal y el articulo 51° del codigo de falta, el cual acude ...
-                "Quien efectuare obras sin la correspondiente aprobación de planos, será sancionado con una multa que oscilara
-                entre cincuenta veces el importe al pago a los derechos de construcción, en caso de tenerla deberá presentar
-                para su verificación".
-            </h1>
+            <h3>
+                {{notificas.hechos}}
+            </h3>
         </ul>
-        <ul>
-            <h1>
-                Otro de los requisitos fundamentales para la aprobación de planos es:
-                Constar con la constancia de la linea municipal otorgado por Catastro Municipal.
-            </h1>
-        </ul>
-        <ul>
-            <h1>
-                Presentación de plano por cuadruplicado
-                Para mayor información dirigirse a Secretaria de Obras Publicas, ubicado en calle Antonio del Pino (planta baja)
-                en la Municipalidad de Tinogasta.
-            </h1>
-            <h1 align="right">Sin otro particular lo saludo Atte.</h1>
-        </ul>
+    <br>
+    <h1>NOTIFICACIÓN Y CITACIÓN:</h1>
+    <h4>
+        Queda Ud. Notificado/a del presente Acta y citado para comparecer, dentro de los 3(tres) días hábiles, ante los
+        tribunales Municipales de Falta (calle Dr. Antonio del Pino N°739) en el horario de 08:00 a 13 Hs. Bajo apercibimiento
+        de rebeldía, donde podrá formular descargo por escrito, ofrecer pruebas y exhibir documento de identidad.
+    </h4>
+    <br>
+    <h4>
+        Firma Inspector ...................................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Firma Responsable ...................................
+    </h4>
+    <h4>
+        Aclaración ...................................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        D.N.I. ...................................
+    </h4>
+    <h4>Firma Ispector ...................................</h4>
+    <h4>Aclaración .......................................</h4>
+    <h4>Testigos .......................................................................................................
+    ....................................................................................................................
+    ...............
+    </h4>
+    <br>
+    <HR WIDTH=500>
+    <h4 align="center">IMPORTANTE NO DEBE ABONARSE SUMA ALGUNA AL RECIBIR COPIA DEL PRESENTE ACTA</h4>
+    <HR WIDTH=500>
+    <br>
+    <h2 align="center">DESIGNACIÓN CATASTRAL</h2>
+    <h3 align="center">Dpto.............Dto:............Sección:...............Parcela:...............</h3>
+
+
+
 </form>
 
 {%endblock%}

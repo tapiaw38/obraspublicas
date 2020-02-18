@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/submenu.css' %}">
-	<link rel="stylesheet" href="{% static 'css/imagen.css' %}">
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 	<script src="{% static 'js/jquery.min.js'%}"></script>
 
 	{% endblock %}
@@ -19,7 +19,7 @@
 	{%block header%}
 	<header>
 		<div>
-			<img src="{% static 'img/municipalidad.png' %}" id="img">
+			<img src="{% static 'img/muni.png' %}" id="img">
 
 		</div>
 	</header>
@@ -31,42 +31,43 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-success">
             <div class="collapse navbar-collapse" id="navbarsExample03">
               <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active"><a class="nav-link">Obras Publicas</a></li>
                 <li class="nav-item active">
                   <a class="nav-link" href="{%url 'index'%}">Inicio<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
-                    <a class="dropdown-item" href="{%url 'usuario_nuevo'%}">Nuevo usuario</a>
-                    <a class="dropdown-item" href="{%url 'usuario_listar'%}">Usuarios Registrados</a>
+                    <a class="dropdown-item" href="{%url 'usuario_nuevo'%}">Nueva Persona</a>
+                    <a class="dropdown-item" href="{%url 'usuario_listar'%}">Registro y Edición</a>
                   </div>
                 </li>
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Proyectistas</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
-                    <a class="dropdown-item" href="{%url 'proyectista_nuevo'%}">Nuevo</a>
-                    <a class="dropdown-item" href="{%url 'proyectista_listar'%}">Proyectistas Registrados</a>
+                    <a class="dropdown-item" href="{%url 'proyectista_nuevo'%}">Nuevo Proyectista</a>
+                    <a class="dropdown-item" href="{%url 'proyectista_listar'%}">Registro y Edición</a>
                   </div>
                 </li>
                   <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Inspección de Obras</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
-                    <a class="dropdown-item" href="{%url 'obra_nuevo'%}">Nueva</a>
-                    <a class="dropdown-item" href="{%url 'obra_listar'%}">Registros</a>
+                    <a class="dropdown-item" href="{%url 'obra_nuevo'%}">Nueva Inspección</a>
+                    <a class="dropdown-item" href="{%url 'obra_listar'%}">Registros y Vencimientos</a>
                   </div>
                 </li>
                    <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liquidación de planos</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
                     <a class="dropdown-item" href="{%url 'plano_nuevo'%}">Nuevo Pago</a>
-                    <a class="dropdown-item" href="{%url 'plano_listar'%}">Registros de Pagos</a>
+                    <a class="dropdown-item" href="{%url 'plano_listar'%}">Registros y Deudas</a>
                   </div>
                    </li>
                   <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Infracciones</a>
+                  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actas e Infracciones</a>
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
                     <a class="dropdown-item" href="{%url 'notifica_nuevo'%}">Crea Acta</a>
-                    <a class="dropdown-item" href="{%url 'notifica_listar'%}">Registros</a>
+                    <a class="dropdown-item" href="{%url 'notifica_listar'%}">Registros y Vencimientos</a>
                   </div>
                 </li>
                 </li>

@@ -73,5 +73,5 @@ class notifica_pdf(View):
         notifica=Notifica.objects.get(id=id_notifica)
         f = datetime.datetime.now()
         f_hoy = f.strftime("%d de %B de %Y")
-        pdf=render_pdf("notifica/obra_pdf.html",{'notificas':notifica,'fecha_hoy':f_hoy})
+        pdf=render_pdf("notifica/notifica_pdf.html",{'notificas':notifica,'fecha_hoy':f_hoy})
         return HttpResponse(pdf, content_type='application/pdf')
