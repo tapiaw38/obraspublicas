@@ -46,11 +46,11 @@ def obra_search(request):
         obra=Obra.objects.filter(usuario__dni__contains=buscar)
     else:
         obra = Obra.objects.all()
-        paginator = Paginator(obra, 7)
-        page = request.GET.get('page')
-        obra = paginator.get_page(page)
     for i in obra:
         i.fecha_limite = i.fecha + datetime.timedelta(days=i.dias)
+    paginator = Paginator(obra, 7)
+    page = request.GET.get('page')
+    obra = paginator.get_page(page)
     contexto = {'object_list': obra,'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request, 'obra/buscar.html',contexto)
 

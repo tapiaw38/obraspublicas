@@ -43,6 +43,9 @@ def notifica_list(request):
     notifica = Notifica.objects.all()
     for i in notifica:
         i.fecha_limite = i.fecha + datetime.timedelta(days=3)
+    paginator = Paginator(notifica, 7)
+    page = request.GET.get('page')
+    notifica = paginator.get_page(page)
     contexto = {'object_list':notifica, 'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request,'notifica/notifica_list.html',contexto)
 
@@ -52,11 +55,11 @@ def notifica_search(request):
         notifica=Notifica.objects.filter(usuario__dni__contains=buscar)
     else:
         notifica = Notifica.objects.all()
-        paginator = Paginator(notifica, 7)
-        page = request.GET.get('page')
-        notifica = paginator.get_page(page)
     for i in notifica:
         i.fecha_limite = i.fecha + datetime.timedelta(days=3)
+    paginator = Paginator(notifica, 7)
+    page = request.GET.get('page')
+    notifica = paginator.get_page(page)
     contexto = {'object_list': notifica,'f_actual':datetime.datetime.now(timezone.utc)}
     return render(request, 'notifica/buscar.html',contexto)
 
