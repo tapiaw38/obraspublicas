@@ -25,14 +25,16 @@ def cementerio_list(request):
     cementerio = Cementerio.objects.all()
     for i in cementerio:
         i.caduca = i.fecha_compra + datetime.timedelta(days=i.vigencia*365)
-        i.consecion = i.caduca + datetime.timedelta(days=i.dias_consecion)
-        i.final_trabajo = i.fecha_compra + datetime.timedelta(days=i.dias_trabajo)
+        # calcular la finalizacion prorroga para comenzar
+        i.caduca_concesion = i.caduca + datetime.timedelta(days=i.dias_concesion)
+        i.fin_prorroga_iniciar = i.fecha_compra + datetime.timedelta(days=i.prorroga_iniciar)
+        # calcular la finalizacion de prorroga para terminar
+        if i.fecha_inicio != None:
+            i.fecha_final = i.fecha_inicio + datetime.timedelta(days=i.prorroga_trabajo)
         i.fecha_anual1 = i.fecha_compra + datetime.timedelta(days=365)
         i.fecha_anual2 = i.fecha_compra + datetime.timedelta(days=365*2)
         i.fecha_anual3 = i.fecha_compra + datetime.timedelta(days=365*3)
         i.fecha_anual4 = i.fecha_compra + datetime.timedelta(days=365*4)
-        # Fecha finaliza prorroga para finalizar el trabajo
-        i.fecha_final = i.fecha_inicio + datetime.timedelta(days=i. prorroga_trabajo)
         if i.fecha_inicio != None:
             i.trabajo_inicio=True
         if i.trabajo_final == True:
@@ -51,14 +53,16 @@ def cementerio_search(request):
         cementerio = Cementerio.objects.all()
     for i in cementerio:
         i.caduca = i.fecha_compra + datetime.timedelta(days=i.vigencia*365)
-        i.consecion = i.caduca + datetime.timedelta(days=i.dias_consecion)
-        i.final_trabajo = i.fecha_compra + datetime.timedelta(days=i.dias_trabajo)
+        # calcular la finalizacion prorroga para comenzar
+        i.caduca_concesion = i.caduca + datetime.timedelta(days=i.dias_concesion)
+        i.fin_prorroga_iniciar = i.fecha_compra + datetime.timedelta(days=i.prorroga_iniciar)
+        # calcular la finalizacion de prorroga para terminar
+        if i.fecha_inicio != None:
+            i.fecha_final = i.fecha_inicio + datetime.timedelta(days=i.prorroga_trabajo)
         i.fecha_anual1 = i.fecha_compra + datetime.timedelta(days=365)
         i.fecha_anual2 = i.fecha_compra + datetime.timedelta(days=365*2)
         i.fecha_anual3 = i.fecha_compra + datetime.timedelta(days=365*3)
         i.fecha_anual4 = i.fecha_compra + datetime.timedelta(days=365*4)
-        # Fecha finaliza prorroga para finalizar el trabajo
-        i.fecha_final = i.fecha_inicio + datetime.timedelta(days=i. prorroga_trabajo)
         if i.fecha_inicio != None:
             i.trabajo_inicio=True
         if i.trabajo_final == True:

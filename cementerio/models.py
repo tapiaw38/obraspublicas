@@ -3,9 +3,9 @@ from usuario.models import Usuario
 # Create your models here.
 class Cementerio(models.Model):
     # Compra de lotes
-    fecha_compra = models.DateField()
+    fecha_compra = models.DateTimeField()
     usuario = models.ForeignKey(Usuario, null=False, blank=False, on_delete=models.CASCADE)
-    construccion = models.CharField()# Nicho, Mansuleo, Fosa
+    construccion = models.CharField(max_length=50)# Nicho, Mansuleo, Fosa
     lote = models.IntegerField()
     lote_num = models.CharField(max_length=30)
     lote_cuadro = models.CharField(max_length=30)
@@ -15,15 +15,19 @@ class Cementerio(models.Model):
     caduca = models.DateTimeField(null=True, blank=True) # Fecha de vencimiento del contrato
     dias_concesion = models.IntegerField(default=30) # Dias para renovacion de contratos
     caduca_concesion = models.DateTimeField(null=True, blank=True) # Fecha de vencimiento total
-    dias_trabajo = models.IntegerField() # Plazo en dias para iniciar trabajos
-    final_trabajo = models.DateTimeField(null=True,blank=True) # Vencimiento del plazo de trabajos
     # Al iniciar los trabajos
-    trabajo_inicio = models.NullBooleanField(default=False) # Inicio del trabajo
-    fecha_inicio = models.DateTimeField(null=True, blank=True) #fecha de inicio
-    prorroga_trabajo = models.IntegerField(default=240)
+    #trabajo_inicio = models.NullBooleanField(default=False) # Inicio del trabajo
+    prorroga_iniciar = models.IntegerField(default=180)
+    fin_prorroga_iniciar = models.DateTimeField(null=True, blank=True)
+    # al sacar permisos
+
+    fecha_inicio = models.DateTimeField(null=True, blank=True)  # fecha de inicio
+    prorroga_trabajo = models.IntegerField(default=240) # prorroga para finalizar despues de haber sacado permiso
+    fecha_final = models.DateTimeField(null=True, blank=True)  # Fin prorroga
+
     trabajo_final = models.NullBooleanField(default=False) # Finalizar trabajo
-    trabajo_final_fecha = models.DateTimeField(null=True, blank=True)
-    fecha_final = models.DateTimeField(null=True, blank=True)
+    trabajo_final_fecha = models.DateTimeField(null=True, blank=True) # Fecha finalizacion (antes o despues)
+
     #deudas
     deuda_anual1 = models.FloatField(default=0)
     deuda_anual2 = models.FloatField(default=0)

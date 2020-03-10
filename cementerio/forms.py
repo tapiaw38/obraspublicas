@@ -16,9 +16,9 @@ class cementerioForm(forms.ModelForm):
             'dimension',
             'precio_lote',
             'vigencia',
-            'dias_concesion'
-            'caduca_concesion',
-            'dias_trabajo',
+            'dias_concesion',
+            'prorroga_iniciar',
+            'prorroga_trabajo',
             'abono_anual',
             'contrato',
         ]
@@ -34,7 +34,8 @@ class cementerioForm(forms.ModelForm):
             'precio_lote':'Precio',
             'vigencia':'Años del Contrato',
             'dias_concesion':'Plazo en dias para renovación de contratos',
-            'dias_trabajo':'Plazo en días para construcción',
+            'prorroga_iniciar':'Plazo en días para iniciar construcción',
+            'prorroga_trabajo':'Plazo en días para terminar construcción',
             'abono_anual':'Precio del pago Anual',
             'contrato':'Imagen del contrato',
         }
@@ -51,19 +52,20 @@ class cementerioForm(forms.ModelForm):
         )
 
         widgets = {
-            'fecha_compra': forms.SelectDateWidget(),
+            'fecha_compra': forms.DateTimeInput(attrs={'class':'form-control'}),
             'usuario': forms.Select(attrs={'class':'form-control'}),
-            'construccion':forms.Select(choices=TIPO),
+            'construccion':forms.Select(choices=TIPO,attrs={'class':'form-control'}),
             'lote': forms.TextInput(attrs={'class':'form-control'}),
             'lote_num': forms.NumberInput(attrs={'class':'form-control'}),
             'lote_cuadro':forms.TextInput(attrs={'class':'form-control'}),
             'dimension':forms.TextInput(attrs={'class':'form-control'}),
             'precio_lote':forms.NumberInput(attrs={'class':'form-control'}),
-            'vigencia':forms.Select(choices=TIEMPO_CONTRATO),
+            'vigencia':forms.Select(choices=TIEMPO_CONTRATO,attrs={'class':'form-control'}),
             'dias_concesion':forms.NumberInput(attrs={'class':'form-control'}),
-            'dias_trabajo':forms.NumberInput(attrs={'class':'form-control'}),
+            'prorroga_iniciar':forms.NumberInput(attrs={'class':'form-control'}),
+            'prorroga_trabajo':forms.NumberInput(attrs={'class':'form-control'}),
             'abono_anual':forms.NumberInput(attrs={'class':'form-control'}),
-            'contrato': forms.ClearableFileInput(),
+            'contrato': forms.ClearableFileInput(attrs={'class':'form-control'}),
         }
 
 class anualForm_1(forms.ModelForm):

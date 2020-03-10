@@ -1,0 +1,144 @@
+{% extends 'base/base.html' %}
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<br>
+<form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'cementerio_buscar'%}">
+ {% csrf_token %}
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+    <tr class="table-warning">
+        <td scope="col">#</td>
+        <td scope="col">Fecha solicitud</td>
+        <td scope="col">Usuario</td>
+        <td scope="col">DNI</td>
+        <td scope="col">Tipo</td>
+        <td scope="col">Datos</td>
+        <td scope="col">Estado contrato</td>
+        <td scope="col">Finaliza contrato</td>
+        <td scope="col">Estado Construcción</td>
+        <td scope="col">Pagos anuales</td>
+        <td scope="col">Acciones</td>
+        <td scope="col">Permisos</td>
+    </tr>
+    </thead>
+    <tbody>
+            {% if object_list%}
+            {%for cementerio in object_list%}
+                {% if fecha_compra < caduca %}
+        <tr class="table-success">
+                {% elif fecha_compra > caduca  %}
+            <tr class="table-danger">
+                    {% endif %}
+                <td>{{ cementerio.contrato}}
+                    <div>
+                        <img src="{{cementerio.contrato.url}}">
+                    </div>
+                </td>
+                <td>{{cementerio.fecha_compra}}</td>
+                <td>{{cementerio.usuario.nombre}}</td>
+                <td>{{cementerio.usuario.dni}}</td>
+                <td>{{cementerio.construccion}}</td>
+                <!-- Datos de la Construccion y compra -->
+               <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                                <a class="dropdown-item" href="">Construcción</a>
+                                <a class="dropdown-item" href="">Compra</a>
+                                <a class="dropdown-item" href="">Contrato</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+                <!-- Estado de contratos -->
+                {% if f_actual < cementerio.caduca %}
+                <td>Vigente</td>
+                {% elif f_actual > cementerio.caduca and f_actual < cementerio.caduca_concesion %}
+                <td>Concesion 30 dias</td>
+                {% elif f_actual > cementerio.caduca and f_actual > cementerio.caduca_concesion %}
+                <td>Vencido</td>
+                {% endif %}
+                <td>{{cementerio.caduca}}</td>
+
+                <!-- Estado de obras (fecha compra / fecha inicio = 180 dias) -->
+                {% if f_actual < cementerio.fin_prorroga_iniciar %}
+                <td>Inicio prorroga</td>
+                {% elif f_actual > cementerio.fecha_final and cementerio.fecha_inicio == None %}
+                <td>Caduca conceción</td>
+                {% elif cementerio.fecha_inicio != None and  cementerio.trabajo_final == False %}
+                <td>Inicio de trabajo</td>
+                {% elif f_actual > prorroga_trabajo and cementerio.trabajo_final == False%}
+                <td>Fin de prorroga construcción</td>
+                {% elif cementerio.trabajo_final == True %}
+                <td>Fin de construcción</td>
+                {% endif %}
+                <!-- Estadod de pagos anuales -->
+                {% if monto_anual1 <= 0 and  fecha_anual1 > f_actual %}
+                <td>Deuda pago 1</td>
+                {% elif monto_anual2 <= 0 and  fecha_anual2 > f_actual %}
+                <td>Deuda pago 2</td>
+                {% elif monto_anual3 <= 0 and  fecha_anual3 > f_actual %}
+                <td>Deuda pago 3</td>
+                {% elif monto_anual4 <= 0 and  fecha_anual2 > f_actual %}
+                <td>Deuda pago 4</td>
+                {% else %}
+                <td>Al dia</td>
+                {% endif %}
+                <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{% url 'cementerio_editar' cementerio.id %}">Editar</a>
+                              <a class="dropdown-item" href="">Comprobante</a>
+                                <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="">Pagos anuales</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+                <!-- Permisos de construcción -->
+                <td><a class="btn btn-primary">Realizar</a></td>
+        </tr>
+        {%endfor%}
+        {% else %}
+        <div class="alert alert-dismissible alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Ups! </strong>tú registro esta vacio, <a href="{% url 'cementerio_nuevo' %}" class="alert-link">ingresa uno</a>.
+        </div>
+        {%endif%}
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+      {% if page_obj.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+      {% endif%}
+      {% if page_obj.has_next %}
+    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      {% endif%}
+  </ul>
+</nav>
+{% endblock%}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('#botonBus').click(function() {
+            var buscar = $('#busca').val();
+            if (buscar==""){
+                window.alert('Ingresa un DNI para realizar una busqueda');
+            }
+        });
+    });
+</script>
+{% endblock %}

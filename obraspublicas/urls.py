@@ -27,7 +27,8 @@ urlpatterns = [
     path('proyectista/', include('proyectista.urls')),
     path('notificacion/', include('notifica.urls')),
     path('inspeccion/', include('obra.urls')),
+    path('cementerio/', include('cementerio.urls')),
     path('', views.index.as_view(), name='index')
 ]
 
-urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

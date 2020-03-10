@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'proyectista',
     'notifica',
     'obra',
+    'cementerio',
 ]
 
 MIDDLEWARE = [
