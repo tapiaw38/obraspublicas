@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.shortcuts import render
 import datetime
 from datetime import timezone
@@ -7,6 +8,7 @@ from django.views.generic import CreateView, UpdateView
 from cementerio.forms import cementerioForm, anualForm_1, anualForm_2, anualForm_3, anualForm_4, permisoForm, \
     fintrabajoForm
 from cementerio.models import Cementerio
+from django.views.generic import View
 # Create your views here.
 
 class cementerio_create(CreateView):
@@ -109,3 +111,16 @@ class final_trabajo_edit(UpdateView):
     template_name = 'cementerio/final_trabajo_form.html'
     success_url = reverse_lazy('cementerio_listar')
 
+class contrato(View):
+    def get(self, request,id_cementerio):
+        cementerio = Cementerio.objects.get(id=id_cementerio)
+        contexto = {'cementerio':cementerio}
+        contrato = render(request,'cementerio/contrato.html',contexto)
+        return HttpResponse(contrato)
+
+class compra(View):
+    def get(self, request,id_cementerio):
+        cementerio = Cementerio.objects.get(id=id_cementerio)
+        contexto = {'cementerio':cementerio}
+        contrato = render(request,'cementerio/compra.html',contexto)
+        return HttpResponse(contrato)

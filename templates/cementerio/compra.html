@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<a class="btn btn-primary" href="{%url 'cementerio_listar'%}">Volver</a>
+<br>
+<br>
+<div class="col-md-4 order-md-2 mb-3">
+  <div class="card mb-3">
+    <h3 class="card-header">Datos de Solicitud</h3>
+    <div class="card-body">
+      <h5 class="card-title">Solicitud N°{{cementerio.id}}</h5>
+      <h5 class="card-title">{{cementerio.fecha_compra}}.</h5>
+      <h5 class="card-title">{{cementerio.usuario.nombre}}</h5>
+      <p class="card-subtitle text-muted">DNI: {{cementerio.usuario.dni}}</p>
+      <p class="card-subtitle text-muted">Dirección: {{cementerio.usuario.direccion}}</p>
+      <p class="card-subtitle text-muted">Matricula Catastral: {{cementerio.usuario.catastro}}</p>
+      {% if cementerio.usuario.tel == None %}
+      <p class="card-subtitle text-muted">Celular: No se registo</p>
+      {% else %}
+      <p class="card-subtitle text-muted">Celular: {{cementerio.usuario.tel}}</p>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Datos de Construcción</h5>
+      <p class="card-subtitle text-muted">Tipo de construcción: {{cementerio.construccion}}.</p>
+      <p class="card-subtitle text-muted">Lotes: {{cementerio.lote}}</p>
+      <p class="card-subtitle text-muted">N°: {{cementerio.lote_num}}</p>
+      <p class="card-subtitle text-muted">Cuadro: {{cementerio.lote_cuadro}}</p>
+      <p class="card-subtitle text-muted">Dimensiones: {{cementerio.dimension}}</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Total a Abonar</h5>
+      <p class="card-subtitle text-muted">Precio por lote: ${{cementerio.precio_lote}}.</p>
+      <p class="card-subtitle text-muted">Pago anual: ${{cementerio.abono_anual}}</p>
+    </div>
+  </div>
+</div>
+<br>
+{% endblock%}

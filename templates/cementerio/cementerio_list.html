@@ -37,10 +37,7 @@
                 {% elif fecha_compra > caduca  %}
             <tr class="table-danger">
                     {% endif %}
-                <td>{{ cementerio.contrato}}
-                    <div>
-                        <img src="{{cementerio.contrato.url}}">
-                    </div>
+                <td>{{ cementerio.id}}
                 </td>
                 <td>{{cementerio.fecha_compra}}</td>
                 <td>{{cementerio.usuario.nombre}}</td>
@@ -52,9 +49,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
                             <div class="dropdown-menu" style="">
-                                <a class="dropdown-item" href="">Construcción</a>
-                                <a class="dropdown-item" href="">Compra</a>
-                                <a class="dropdown-item" href="">Contrato</a>
+                                <a class="dropdown-item" href="{% url 'compra' cementerio.id %}">Datos de compra</a>
+                                <a class="dropdown-item" href="{% url 'contrato' cementerio.id %}">Contrato</a>
                             </div>
                         </li>
                     </ul>

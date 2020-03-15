@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+
+{%block header%}
+{%endblock%}
+
+{% block content %}
+<br>
+<a class="btn btn-primary" href="{%url 'cementerio_listar'%}">Volver</a>
+<br>
+<br>
+<div class="container text-center">
+    <div class="text-left">
+        <h4>Contrato</h4>
+        <p>Inicio de contrato: {{cementerio.fecha_compra}}</p>
+        <p>De {{cementerio.usuario.nombre}}, DNI: {{cementerio.usuario.dni}}</p>
+        <p>Años de vigencia: {{cementerio.vigencia}}</p>
+    </div>
+        <div class="text-center">
+            <img src="{{cementerio.contrato.url}}">
+            <p>{{ cementerio.contrato}}</p>
+        </div>
+</div>
+<div>
+</div>
+{% endblock %}
