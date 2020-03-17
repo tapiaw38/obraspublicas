@@ -8,6 +8,8 @@ Busqueda de Clientes
 {%endblock%}
 
 {% block content %}
+<h5 class="p-3">Buscar Inspección de Obra</h5>
+<a class="btn btn-outline-primary" href="{%url 'obra_listar'%}">Volver</a>
 <br>
 <br>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'obra_buscar'%}">
@@ -18,7 +20,7 @@ Busqueda de Clientes
 <br>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning" >
+    <tr class="table-light" >
         <td scope="col">#</td>
         <td scope="col">Fecha de Inspeccion</td>
         <td scope="col">Usuario</td>
@@ -33,7 +35,9 @@ Busqueda de Clientes
     <tbody>
         {% if object_list%}
             {%for obra in object_list%}
-                {% if obra.presentacion == True or f_actual < obra.fecha_limite %}
+                {% if f_actual < obra.fecha_limite%}
+        <tr class="table-light">
+                {% elif obra.presentacion == True %}
         <tr class="table-success">
                 {% elif f_actual > obra.fecha_limite %}
             <tr class="table-danger">

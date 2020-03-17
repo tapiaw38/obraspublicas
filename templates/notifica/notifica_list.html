@@ -1,20 +1,22 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {%block header%}
 {%endblock%}
 
 {% block content %}
-<br>
-<br>
+<h5 class="p-3">Lista de Infracciones</h5>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'notifica_buscar'%}">
  {% csrf_token %}
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
     <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
 </form>
-<br>
+    <a class="navbar-brand float-right" href="{%url 'notifica_nuevo'%}" style="font-size:15px;">Crea Acta
+        <img class="boton-circulo ecirculo" src="{% static 'img/papel.png' %}" style="width:50px;height:auto;">
+    </a>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning">
+    <tr class="table-light">
         <td scope="col">#</td>
         <td scope="col">Fecha del Hecho</td>
         <td scope="col">Lugar del Hecho</td>
@@ -31,8 +33,10 @@
     <tbody>
             {% if object_list%}
             {%for notifica in object_list%}
-                {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
+                {% if notifica.situacion == True %}
         <tr class="table-success">
+                {% elif f_actual < notifica.fecha_limite and notifica.situacion == False %}
+            <tr class="table-light">
                 {% elif f_actual > notifica.fecha_limite %}
             <tr class="table-danger">
                     {% endif %}

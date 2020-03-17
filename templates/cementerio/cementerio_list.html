@@ -1,20 +1,22 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {%block header%}
 {%endblock%}
 
 {% block content %}
-<br>
-<br>
+<h5 class="p-3">Cementerio, Contratos y Permisos</h5>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'cementerio_buscar'%}">
  {% csrf_token %}
     <input class="form-control mr-sm-2" type="text" placeholder="Search" name="buscalo" id="busca">
     <button class="btn btn-secondary my-2 my-sm-0" type="submit" href="" id="botonBus">Busqueda por DNI</button>
 </form>
-<br>
+    <a class="navbar-brand float-right" href="{%url 'cementerio_nuevo'%}" style="font-size:15px;">Comprar Lote
+        <img class="boton-circulo ecirculo" src="{% static 'img/contrato.png' %}" style="width:50px;height:auto;">
+    </a>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning">
+    <tr class="table-light">
         <td scope="col">#</td>
         <td scope="col">Fecha solicitud</td>
         <td scope="col">Usuario</td>

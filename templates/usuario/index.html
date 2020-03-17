@@ -2,29 +2,11 @@
 	{% load static %}
 
 {% block content %}
-<div class="jumbotron">
-  <h1 class="lead text-center">Secretaria de Obras Publicas</h1>
+<div class="jumbotron" style="background-color:black;">
+  <h4 class="text-center">SECRETARIA DE OBRAS PUBLICAS</h4>
   <hr class="my-4">
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <a class="navbar-brand" href="{%url 'usuario_listar'%}">
-        <img class="boton-circulo ecirculo" src="{% static 'img/b-1.png' %}" class="d-inline-block">
-      </a>
-
-      <a class="navbar-brand" href="{%url 'proyectista_listar'%}">
-        <img class="boton-circulo ecirculo" src="{% static 'img/b-2.png' %}" class="d-inline-block">
-      </a>
-
-        <a class="navbar-brand" href="{%url 'obra_listar'%}">
-        <img class="boton-circulo ecirculo" src="{% static 'img/b-3.png' %}" class="d-inline-block">
-      </a>
-
-        <a class="navbar-brand" href="{%url 'plano_listar'%}">
-        <img class="boton-circulo ecirculo" src="{% static 'img/b-4.png' %}" class="d-inline-block">
-      </a>
-
-          <a class="navbar-brand" href="{%url 'notifica_listar'%}">
-        <img class="boton-circulo ecirculo" src="{% static 'img/b-5.png' %}" class="d-inline-block">
-      </a>
+    <div style="height:300px">
+        <img src="{% static 'img/obras_publicas.jpg' %}" style="width:100%;height:100%;">
     </div>
 </div>
 
@@ -33,10 +15,9 @@
 <!-- /.container -->
 {%block footer%}
 
-  <footer class="py-5 bg-dark">
-    <div class="container">
+  <footer class="py-5 bg-light">
+      <div>
       <p class="m-0 text-center text-white">Copyright &copy; RED SOLUCIONES INFORMATICAS</p>
-    </div>
       <div align="center" class="justify-content-md-center">
                   <img src="{% static 'img/red.png' %}" style="width: 80px; height:auto;">
 		<a class="navbar-brand" href="https://www.facebook.com/RedTinogasta/">
@@ -49,7 +30,8 @@
 			<img src="{% static 'img/mail.png' %}" class="d-inline-block icon-nav">Email: sdcordoba@yahoo.com.ar
 
 		</a>
-      </div>
     <!-- /.container -->
+      </div>
+      </div>
   </footer>
 {%endblock%}

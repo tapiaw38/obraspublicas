@@ -8,6 +8,8 @@ Busqueda de Clientes
 {%endblock%}
 
 {% block content %}
+<h5 class="p-3">Buscar Contratos Cementerio</h5>
+    <a class="btn btn-outline-primary" href="{%url 'cementerio_listar'%}">Volver</a>
 <br>
 <br>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'cementerio_buscar'%}">
@@ -18,7 +20,7 @@ Busqueda de Clientes
 <br>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning" >
+    <tr class="table-light" >
         <td scope="col">#</td>
         <td scope="col">Fecha solicitud</td>
         <td scope="col">Usuario</td>
@@ -34,55 +36,71 @@ Busqueda de Clientes
     </tr>
     </thead>
     <tbody>
-            {% if object_list%}
-            {%for notifica in object_list%}
+             {% if object_list%}
+            {%for cementerio in object_list%}
                 {% if fecha_compra < caduca %}
         <tr class="table-success">
                 {% elif fecha_compra > caduca  %}
             <tr class="table-danger">
                     {% endif %}
-                <td>{{cementerio.id}}</td>
+                <td>{{ cementerio.id}}
+                </td>
                 <td>{{cementerio.fecha_compra}}</td>
                 <td>{{cementerio.usuario.nombre}}</td>
                 <td>{{cementerio.usuario.dni}}</td>
                 <td>{{cementerio.construccion}}</td>
-                <!-- Datos de la Construccion -->
-                <td><a class="btn btn-primary">Datos compra</a></td>
-                <!-- Fin datos -->
-                <td><a class="btn btn-primary">Datos contrato</a></td>
+                <!-- Datos de la Construccion y compra -->
+               <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                                <a class="dropdown-item" href="{% url 'compra' cementerio.id %}">Datos de compra</a>
+                                <a class="dropdown-item" href="{% url 'contrato' cementerio.id %}">Contrato</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
                 <!-- Estado de contratos -->
                 {% if f_actual < cementerio.caduca %}
-                <td>Caduco</td>
-                {% elif f_actual > cementerio.caduca  %}
                 <td>Vigente</td>
+                {% elif f_actual > cementerio.caduca and f_actual < cementerio.caduca_concesion %}
+                <td>Concesion 30 dias</td>
+                {% elif f_actual > cementerio.caduca and f_actual > cementerio.caduca_concesion %}
+                <td>Vencido</td>
                 {% endif %}
+                <td>{{cementerio.caduca}}</td>
+
                 <!-- Estado de obras (fecha compra / fecha inicio = 180 dias) -->
                 {% if f_actual < cementerio.fin_prorroga_iniciar %}
                 <td>Inicio prorroga</td>
                 {% elif f_actual > cementerio.fecha_final and cementerio.fecha_inicio == None %}
                 <td>Caduca conceción</td>
-                {% elif cementerio.fecha_inicio != None and  cementerio.trabajo_final==False %}
+                {% elif cementerio.fecha_inicio != None and  cementerio.trabajo_final == False %}
                 <td>Inicio de trabajo</td>
-                {% elif f_actual > prorroga_trabajo and cementerio.trabajo_final==False%}
+                {% elif f_actual > prorroga_trabajo and cementerio.trabajo_final == False%}
                 <td>Fin de prorroga construcción</td>
-                {% cementerio.trabajo_final==True %}
+                {% elif cementerio.trabajo_final == True %}
                 <td>Fin de construcción</td>
                 {% endif %}
                 <!-- Estadod de pagos anuales -->
-                {% if monto_anual1 < 0 and  fecha_anual1 > f_actual %}
+                {% if monto_anual1 <= 0 and  fecha_anual1 > f_actual %}
                 <td>Deuda pago 1</td>
-                {% if monto_anual2 < 0 and  fecha_anual2 > f_actual %}
+                {% elif monto_anual2 <= 0 and  fecha_anual2 > f_actual %}
                 <td>Deuda pago 2</td>
-                {% if monto_anual3 < 0 and  fecha_anual3 > f_actual %}
+                {% elif monto_anual3 <= 0 and  fecha_anual3 > f_actual %}
                 <td>Deuda pago 3</td>
-                {% if monto_anual4 < 0 and  fecha_anual2 > f_actual %}
+                {% elif monto_anual4 <= 0 and  fecha_anual2 > f_actual %}
                 <td>Deuda pago 4</td>
+                {% else %}
+                <td>Al dia</td>
+                {% endif %}
                 <td>
                     <ul class="nav nav-pills">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
                             <div class="dropdown-menu" style="">
-                              <a class="dropdown-item" href="">Editar</a>
+                              <a class="dropdown-item" href="{% url 'cementerio_editar' cementerio.id %}">Editar</a>
                               <a class="dropdown-item" href="">Comprobante</a>
                                 <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="">Pagos anuales</a>
@@ -94,11 +112,6 @@ Busqueda de Clientes
                 <td><a class="btn btn-primary">Realizar</a></td>
         </tr>
         {%endfor%}
-        {% else %}
-        <div class="alert alert-dismissible alert-success">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong>Ups! </strong>tú registro esta vacio, <a href="{% url 'cementerio_nuevo' %}" class="alert-link">ingresa uno</a>.
-        </div>
         {%endif%}
     </tbody>
 </table>

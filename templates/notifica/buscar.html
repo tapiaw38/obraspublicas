@@ -8,6 +8,8 @@ Busqueda de Clientes
 {%endblock%}
 
 {% block content %}
+<h5 class="p-3">Buscar Infracciones</h5>
+<a class="btn btn-outline-primary" href="{%url 'notifica_listar'%}">Volver</a>
 <br>
 <br>
 <form class="form-inline my-2 my-lg-0" type="get" method="POST" action="{%url 'notifica_buscar'%}">
@@ -18,7 +20,7 @@ Busqueda de Clientes
 <br>
 <table class="table table-hover">
     <thead>
-    <tr class="table-warning" >
+    <tr class="table-light" >
         <td scope="col">#</td>
         <td scope="col">Fecha del Hecho</td>
         <td scope="col">Lugar del Hecho</td>
@@ -35,8 +37,10 @@ Busqueda de Clientes
     <tbody>
        {% if object_list%}
             {%for notifica in object_list%}
-                {% if notifica.situacion == True or f_actual < notifica.fecha_limite %}
+                {% if notifica.situacion == True %}
         <tr class="table-success">
+                {% elif f_actual < notifica.fecha_limite and notifica.situacion == False %}
+            <tr class="table-light">
                 {% elif f_actual > notifica.fecha_limite %}
             <tr class="table-danger">
                     {% endif %}
@@ -87,7 +91,7 @@ Busqueda de Clientes
         $('#botonBus').click(function() {
             var buscar = $('#busca').val();
             if (buscar==""){
-                window.alert('Ingresa un DNI para realizar una busqueda');
+|                window.alert('Ingresa un DNI para realizar una busqueda');
             }
         });
     });
