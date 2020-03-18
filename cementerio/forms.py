@@ -151,7 +151,7 @@ class permisoForm(forms.ModelForm):
             'fecha_inicio':'Inicio de Construcción',
             'metro':'Metros cuadrados',
             'precio_metro':'Precio por metro cuadrado',
-            'prorroga_trabajo':'Dias de prorroga para iniciar trabajos',
+            'prorroga_trabajo':'Dias de prorroga para finalizar construcción',
         }
 
         widgets = {

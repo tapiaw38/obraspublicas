@@ -34,11 +34,17 @@
     <tbody>
             {% if object_list%}
             {%for cementerio in object_list%}
-                {% if fecha_compra < caduca %}
-        <tr class="table-success">
-                {% elif fecha_compra > caduca  %}
+                {% if f_actual < cementerio.caduca %}
+            <tr class="table-light">
+                {% elif f_actual > cementerio.fecha_anual1 and cementerio.monto_anual1 == 0 and cementerio.vigencia == 1 or f_actual > cementerio.fecha_anual2 and cementerio.monto_anual2 == 0 and cementerio.vigencia <= 2 or f_actual > cementerio.fecha_anual3 and cementerio.monto_anual3 == 0 and cementerio.vigencia <= 3 or f_actual > cementerio.fecha_anual4 and cementerio.monto_anual4 == 0 and cementerio.vigencia <= 4 %}
+            <tr class="table-warning">
+                {% elif f_actual > cementerio.caduca and f_actual < cementerio.caduca_concesion %}
+            <tr class="table-warning">
+                {% elif f_actual > cementerio.caduca and f_actual > cementerio.caduca_concesion %}
             <tr class="table-danger">
-                    {% endif %}
+                {% elif cementerio.monto_anual1 > 0 and cementerio.vigencia == 1 or cementerio.monto_anual2 > 0 and cementerio.vigencia == 2 or cementerio.monto_anual3 > 0 and cementerio.vigencia == 3 or cementerio.monto_anual4 > 0 and cementerio.vigencia == 4%}
+            <tr class="table-success">
+                {% endif %}
                 <td>{{ cementerio.id}}
                 </td>
                 <td>{{cementerio.fecha_compra}}</td>
@@ -105,7 +111,7 @@
                     </ul>
                 </td>
                 <!-- Permisos de construcción -->
-                <td><a class="btn btn-primary">Realizar</a></td>
+                <td><a href="{% url 'permiso_edit' cementerio.id %}" class="btn btn-primary">Realizar</a></td>
         </tr>
         {%endfor%}
         {% else %}
