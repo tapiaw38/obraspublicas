@@ -15,7 +15,7 @@ class cementerio_create(CreateView):
     model = Cementerio
     form_class = cementerioForm
     template_name = 'cementerio/cementerio_form.html'
-    success_url = reverse_lazy('notifica_listar')
+    success_url = reverse_lazy('cementerio_listar')
 
 class cementerio_edit(UpdateView):
     model = Cementerio

@@ -28,7 +28,7 @@
         <td scope="col">Estado Construcción</td>
         <td scope="col">Pagos anuales</td>
         <td scope="col">Acciones</td>
-        <td scope="col">Permisos</td>
+        <td scope="col">Construccion</td>
     </tr>
     </thead>
     <tbody>
@@ -111,7 +111,17 @@
                     </ul>
                 </td>
                 <!-- Permisos de construcción -->
-                <td><a href="{% url 'permiso_edit' cementerio.id %}" class="btn btn-primary">Realizar</a></td>
+                <td>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Elegir</a>
+                            <div class="dropdown-menu" style="">
+                              <a class="dropdown-item" href="{% url 'permiso_edit' cementerio.id %}">Permiso</a>
+                              <a class="dropdown-item" href="{% url 'finaliza_edit' cementerio.id %}">Finaliza trabajo</a>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
         </tr>
         {%endfor%}
         {% else %}
